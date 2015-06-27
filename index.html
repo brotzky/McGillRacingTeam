@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+      <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <title></title>
+</head>
+<body>
+
+<form id="login-form" method="post">
+<input class="userName" type="email" name="login" value="" placeholder="Email">
+<input class="userPass" type="password" name="login" value="" placeholder="Password">
+  <button type="submit">Login</button>
+</form>
+
+<script type="text/javascript">
+
+$('#login-form').on('submit',function(event){
+  event.preventDefault()
+
+
+  var userEmail = $('.userName').val().toString();
+  var userPass = $('.userPass').val().toString();
+
+  var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+  myDataRef.authWithPassword({
+    email    : userEmail,
+    password : userPass
+  }, function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      window.location = "http://localhost:8888/amchart/mike-test.html";
+      console.log("Authenticated successfully with payload:", authData);
+    }
+  });
+});
+
+  // var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+
+  // myDataRef.createUser({
+  //   email    : "brotzky@gmail.com",
+  //   password : "brotzky"
+  // }, function(error, userData) {
+  //   if (error) {
+  //     console.log("Error creating user:", error);
+  //   } else {
+  //     console.log("Successfully created user account with uid:", userData.uid);
+  //   }
+  // });
+
+
+  // myDataRef.authWithPassword({
+  //   email    : userEmail,
+  //   password : userPass
+  // }, function(error, authData) {
+  //   if (error) {
+  //     console.log("Login Failed!", error);
+  //   } else {
+  //     // window.location = "http://localhost:8888/amchart/mike-test.html";
+  //     console.log("Authenticated successfully with payload:", authData);
+  //   }
+  // });
+</script>
+</body>
+</html>
+<head></head>
