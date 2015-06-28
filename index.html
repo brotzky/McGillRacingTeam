@@ -20,6 +20,26 @@
   <div class="loginError">Invalid Username or Password</div>
 </div>
 <script type="text/javascript">
+$('#login-form').keyup(function(event){
+  event.preventDefault()
+  var userEmail = $('.userName').val().toString();
+  var userPass = $('.userPass').val().toString();
+  var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+  myDataRef.authWithPassword({
+    email    : userEmail,
+    password : userPass
+  }, function(error, authData) {
+    if (error) {
+
+    } else {
+      $('.login-container').fadeOut('fast');
+      setTimeout(function(){
+        window.location = "/amchart/mike-test.html";
+      }, 300);
+      console.log("Authenticated successfully with payload:", authData);
+    }
+  });
+});
 $('#login-form').on('submit',function(event){
   event.preventDefault()
   var userEmail = $('.userName').val().toString();

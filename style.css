@@ -34,11 +34,17 @@
     }
     .login-container {
       width: 400px;
+      height: auto;
       padding: 20px 30px 40px;
       text-align: center;
       border: 1px solid rgba(0,0,0,0.2);
       border-radius: 3px;
       box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+      -webkit-transition: height 300ms ease;
+      -moz-transition: height 300ms ease;
+      -ms-transition: height 300ms ease;
+      -o-transition: height 300ms ease;
+      transition: height 300ms ease;
     }
     .racing-logo {
       margin-bottom: 25px;
@@ -77,7 +83,7 @@
       -moz-transition: background-color 300ms ease;
       -ms-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
-      -o-transition: background-color 300ms ease;
+      transition: background-color 300ms ease;
     }
     .loginButton:hover {
       background-color: #1D2228;
