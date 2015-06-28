@@ -20,6 +20,10 @@
         <br>
         <br>
         <br>
+        <select name="select" class="selectInput">
+          <option value="value1" selected>Select a date</option>
+          <option value="data.json">June 20th 2015</option>
+        </select>
         <br>
         <div id="chartdiv" style="height:500px;"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -46,14 +50,19 @@
         //     console.log("Successfully created user account with uid:", userData.uid);
         //   }
         // });
+
+        $(".selectInput").change(function (){
+            var inputData = $(this).val();
+
+
         var chart = AmCharts.makeChart("chartdiv", {
           "type": "serial",
           "theme": "dark",
           "dataDateFormat": "HH:NN:SS",
-          "marginRight": 70,
-          "autoMarginOffset": 20,
+          "marginRight": 50,
+          "autoMarginOffset": 50,
           "dataLoader": {
-              "url": "data.json",
+              "url": inputData,
               "format": "json"
             },
           "balloon": {
@@ -91,6 +100,7 @@
             "enabled": true
           }
         });
+});
         </script>
       </body>
 </html>

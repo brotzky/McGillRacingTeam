@@ -112,8 +112,8 @@
     }
     .logoutButton {
       float: right;
-      height: 30px;
-      padding: 0px 12px 5px;
+      height: 40px;
+      padding: 0px 15px 5px;
       border: none;
       background-color: #990000;
       color: #f9f9f9;
@@ -126,6 +126,21 @@
       -ms-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
+    }
+    .selectInput {
+      position: absolute;
+      top: 13px;
+      left: 5px;
+      background-color: #fff;
+      color: #434343;
+      border: 1px solid #990000;
+      border-radius: 0px;
+      height: 32px;
+      font-size: 1em;
+      /* -webkit-appearance: none; */
+    }
+    .selectInput:focus {
+      outline: none;
     }
 
   </style>
