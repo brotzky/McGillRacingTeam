@@ -1,0 +1,473 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>McGill FSAE Racing</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+        <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+        <script type="text/javascript">
+         var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+          var authData = myDataRef.getAuth();
+          if (!authData) {
+            window.location = "/mrt/";
+          }
+        </script>
+    </head>
+    <body>
+        <button class="logoutButton">Log Out</button>
+        <br>
+        <br>
+        <br>
+        <select name="select" class="selectInput">
+        <option value="" selected>Select a date</option>
+          <option value="june152015.json" >June 15th 2015</option>
+          <option value="may152015.json">May 15th 2015</option>
+          <option value="march152015.json">March 15th 2015</option>
+        </select>
+        <div class="loadingMessage">Please wait, Micheal is fetching your Data...</div>
+        <br>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
+        <script src="http://www.amcharts.com/lib/3/serial.js"></script>
+        <script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
+        <script type="text/javascript">
+
+          var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+          $('button').on('click', function(){
+             myDataRef.unauth();
+             var authData = myDataRef.getAuth();
+             if (authData) {
+             } else {
+               window.location = "/mrt/";
+             }
+          });
+
+          String.prototype.toHHMMSS = function () {
+            var sec_num = parseInt(this, 10); // don't forget the second param
+            var hours   = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+            if (hours   < 10) {hours   = "0"+hours;}
+            if (minutes < 10) {minutes = "0"+minutes;}
+            if (seconds < 10) {seconds = "0"+seconds;}
+            var time    = hours+':'+minutes+':'+seconds;
+            return time;
+          }
+
+          $(".selectInput").change(function (){
+            var selectedValue = $(this).val();
+
+            $(".loadingMessage").show();
+            $.getJSON( selectedValue, function( data ) {
+
+               useData(data);
+               $(".loadingMessage").hide();
+            });
+
+        var useData = function(originalJSON) {
+
+        var holderArr = [];
+        for(prop in originalJSON) {
+          for(secondProp in originalJSON[prop]) {
+              holderArr.push(originalJSON[prop][secondProp]);
+          }
+        }
+
+        var makers = []
+        for (var i = 0; i < originalJSON.length; i++) {
+          makers[i] = [];
+        }
+
+        for (i = 0; i < holderArr.length; i += originalJSON.length-1) {
+
+            var lapTime = holderArr[i+1];
+            var timeOfDay = holderArr[i].toHHMMSS();
+            tmp = {
+                'lapTime': lapTime,
+                'lapTimeOfDay': timeOfDay
+
+            };
+            makers[0].push(tmp);
+
+         firstTest = makers[0];
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_v_max = holderArr[i+2];
+            tmp2 = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_v_max': lap_v_max
+            };
+            makers[1].push(tmp2);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_ect_max = holderArr[i+3];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_ect_max': lap_ect_max
+            };
+            makers[2].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_ect_mean = holderArr[i+4];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_ect_mean': lap_ect_mean
+            };
+            makers[3].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_oilt_max = holderArr[i+5];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_oilt_max': lap_oilt_max
+            };
+            makers[4].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_oilt_mean = holderArr[i+6];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_oilt_mean': lap_oilt_mean
+            };
+            makers[5].push(tmp);
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_iat_max = holderArr[i+7];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_iat_max': lap_iat_max
+            };
+            makers[6].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_iat_mean = holderArr[i+8];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_iat_mean': lap_iat_mean
+            };
+            makers[7].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rhf_max = holderArr[i+9];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rhf_max': lap_rhf_max
+            };
+            makers[8].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rhr_max = holderArr[i+10];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rhr_max': lap_rhr_max
+            };
+            makers[9].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rhf_mean = holderArr[i+11];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rhf_mean': lap_rhf_mean
+            };
+            makers[10].push(tmp);
+
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rhr_mean = holderArr[i+12];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rhr_mean': lap_rhr_mean
+            };
+            makers[11].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_pbrakef_max = holderArr[i+13];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_pbrakef_max': lap_pbrakef_max
+            };
+            makers[12].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_pbraker_max = holderArr[i+14];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_pbraker_max': lap_pbraker_max
+            };
+            makers[13].push(tmp);
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_brakebias_mean = holderArr[i+15];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_brakebias_mean': lap_brakebias_mean
+            };
+            makers[14].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rollf_max = holderArr[i+16];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rollf_max': lap_rollf_max
+            };
+            makers[15].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rollr_max = holderArr[i+17];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rollr_max': lap_rollr_max
+            };
+            makers[16].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_rpm_max = holderArr[i+18];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_rpm_max': lap_rpm_max
+            };
+            makers[17].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_exh_t_max = holderArr[i+19];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_exh_t_max': lap_exh_t_max
+            };
+            makers[18].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_oilp_mean = holderArr[i+20];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_oilp_mean': lap_oilp_mean
+            };
+            makers[19].push(tmp);
+
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_oilp_min = holderArr[i+21];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_oilp_min': lap_oilp_min
+            };
+            makers[20].push(tmp);
+
+
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_fuelp_min = holderArr[i+22];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_fuelp_min': lap_fuelp_min
+            };
+            makers[21].push(tmp);
+
+            var timeOfDay = holderArr[i].toHHMMSS();
+            var lap_battv_mean = holderArr[i+23];
+            tmp = {
+                'lapTimeOfDay': timeOfDay,
+                'lap_battv_mean': lap_battv_mean
+            };
+            makers[22].push(tmp);
+        }
+        emptyArr = []
+
+
+
+
+
+        // myDataRef.createUser({
+        //   email    : "fsae@mail.mcgill.ca",
+        //   password : "mrt16"
+        // }, function(error, userData) {
+        //   if (error) {
+        //     console.log("Error creating user:", error);
+        //   } else {
+        //     console.log("Successfully created user account with uid:", userData.uid);
+        //   }
+        // });
+
+
+            // var inputData = $(this).val();
+
+
+            // for(u=0;u<makers.length;u++){
+            //    for (var user in makers[u])
+            //         {
+            //           // user is the key
+            //           // userList[u][user] is the value
+            //           var userInfo=makers[u][user];
+            //           console.log(userInfo);
+            //         }
+            // }
+
+            var graphNames = [
+                  "lapTimeOfDay",
+                  "lapTime",
+                  "lap_v_max",
+                  "lap_ect_max",
+                  "lap_ect_mean",
+                  "lap_oilt_max",
+                  "lap_oilt_mean",
+                  "lap_iat_max",
+                  "lap_iat_mean",
+                  "lap_rhf_max",
+                  "lap_rhr_max",
+                  "lap_rhf_mean",
+                  "lap_rhr_mean",
+                  "lap_pbrakef_max",
+                  "lap_pbraker_max",
+                  "lap_brakebias_mean",
+                  "lap_rollf_max",
+                  "lap_rollr_max",
+                  "lap_rpm_max",
+                  "lap_exh_t_max",
+                  "lap_oilp_mean",
+                  "lap_oilp_min",
+                  "lap_fuelp_min",
+                  "lap_battv_mean",
+                ]
+
+            var prettyColors = [
+                "#ed5153",
+                "#323a45",
+                "#3F51B5",
+                "#009688",
+                "#CDDC39",
+                "#4CAF50",
+                "#FF9800",
+                "#FF5722",
+                "#607D8B",
+                "#673AB7",
+                "#D32F2F",
+                "#880E4F",
+                "#283593",
+                "#004D40",
+                "#01579B",
+                "#4CAF50",
+                "#FBC02D",
+                "#424242",
+                "#3F51B5",
+                "#7CB342",
+                "#00BCD4",
+                "#455A64",
+                "#1565C0",
+                "#990000"
+            ]
+
+              for (i = 0; i < graphNames.length-1; i++) {
+
+                header = document.createElement('h2');
+                header.innerHTML = graphNames[i+1];
+                temp = document.createElement('div');
+                temp.id = 'chartdiv'+[i];
+                temp.innerHTML = temp.id;
+                temp.style.height = "500px";
+                document.getElementsByTagName('body')[0].appendChild(header);
+                document.getElementsByTagName('body')[0].appendChild(temp);
+
+                var divID = temp.id.toString();
+
+
+                    var chart = AmCharts.makeChart(divID, {
+                      "type": "serial",
+                      "theme": "dark",
+                      "dataDateFormat": "HH:NN:SS",
+                      "marginRight": 50,
+                      "autoMarginOffset": 50,
+                      "dataProvider": makers[i],
+                      "balloon": {
+                        "cornerRadius": 6
+                      },
+                      "valueAxes": [{
+                        "axisAlpha": 0
+                      }],
+                      "graphs": [{
+                        "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]] sec</span></b>",
+                        "bullet": "round",
+                        "bulletSize": 7,
+                        "connect": false,
+                        "gapPeriod": 200,
+                        "lineColor": prettyColors[i],
+                        "lineThickness": 2,
+                        "negativeLineColor": "#487dac",
+                        "valueField": graphNames[i+1].toString()
+                      }],
+                      "chartCursor": {
+                        "categoryBalloonDateFormat": "YYYY",
+                        "cursorAlpha": 0.1,
+                        "cursorColor": "#000000",
+                        "fullWidth": true,
+                        "graphBulletSize": 2
+                      },
+                      "chartScrollbar": {},
+                      "categoryField": "lapTimeOfDay",
+                      "categoryAxis": {
+                        "minPeriod": "ss",
+                        "parseDates": true,
+                        "minorGridEnabled": true
+                      },
+                      "export": {
+                        "enabled": true
+                      }
+                    });
+              }
+            }
+              });
+
+
+        </script>
+      </body>
+</html>
