@@ -25,7 +25,6 @@
           <option value="data.json">June 20th 2015</option>
         </select>
         <br>
-        <div id="chartdiv" style="height:500px;"></div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="http://www.amcharts.com/lib/3/serial.js"></script>
@@ -54,53 +53,63 @@
         $(".selectInput").change(function (){
             var inputData = $(this).val();
 
+              for (i = 0; i < 24; i++) {
+                temp = document.createElement('div');
+                temp.id = 'chartdiv'+[i];
+                temp.innerHTML = temp.id;
+                temp.style.height = "500px";
+                document.getElementsByTagName('body')[0].appendChild(temp);
 
-        var chart = AmCharts.makeChart("chartdiv", {
-          "type": "serial",
-          "theme": "dark",
-          "dataDateFormat": "HH:NN:SS",
-          "marginRight": 50,
-          "autoMarginOffset": 50,
-          "dataLoader": {
-              "url": inputData,
-              "format": "json"
-            },
-          "balloon": {
-            "cornerRadius": 6
-          },
-          "valueAxes": [{
-            "axisAlpha": 0
-          }],
-          "graphs": [{
-            "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]] sec</span></b>",
-            "bullet": "round",
-            "bulletSize": 6,
-            "connect": false,
-            "gapPeriod": 60,
-            "lineColor": "#ed5153",
-            "lineThickness": 2,
-            "negativeLineColor": "#487dac",
-            "valueField": "lapTime"
-          }],
-          "chartCursor": {
-            "categoryBalloonDateFormat": "YYYY",
-            "cursorAlpha": 0.1,
-            "cursorColor": "#000000",
-            "fullWidth": true,
-            "graphBulletSize": 2
-          },
-          "chartScrollbar": {},
-          "categoryField": "lapTimeOfDay",
-          "categoryAxis": {
-            "minPeriod": "ss",
-            "parseDates": true,
-            "minorGridEnabled": true
-          },
-          "export": {
-            "enabled": true
-          }
-        });
-});
+                var divID = temp.id.toString();
+                console.log(divID);
+
+                    var chart = AmCharts.makeChart(divID, {
+                      "type": "serial",
+                      "theme": "dark",
+                      "dataDateFormat": "HH:NN:SS",
+                      "marginRight": 50,
+                      "autoMarginOffset": 50,
+                      "dataLoader": {
+                          "url": inputData,
+                          "format": "json"
+                        },
+                      "balloon": {
+                        "cornerRadius": 6
+                      },
+                      "valueAxes": [{
+                        "axisAlpha": 0
+                      }],
+                      "graphs": [{
+                        "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]] sec</span></b>",
+                        "bullet": "round",
+                        "bulletSize": 6,
+                        "connect": false,
+                        "gapPeriod": 60,
+                        "lineColor": "#ed5153",
+                        "lineThickness": 2,
+                        "negativeLineColor": "#487dac",
+                        "valueField": "lapTime"
+                      }],
+                      "chartCursor": {
+                        "categoryBalloonDateFormat": "YYYY",
+                        "cursorAlpha": 0.1,
+                        "cursorColor": "#000000",
+                        "fullWidth": true,
+                        "graphBulletSize": 2
+                      },
+                      "chartScrollbar": {},
+                      "categoryField": "lapTimeOfDay",
+                      "categoryAxis": {
+                        "minPeriod": "ss",
+                        "parseDates": true,
+                        "minorGridEnabled": true
+                      },
+                      "export": {
+                        "enabled": true
+                      }
+                    });
+              }
+            });
         </script>
       </body>
 </html>
