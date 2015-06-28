@@ -6,19 +6,26 @@
         <title>amCharts examples</title>
         <link rel="stylesheet" href="style.css" type="text/css">
 
+        <script type="text/javascript">
+          var authData = myDataRef.getAuth();
+          if (authData) {
+            console.log("You Can Stay");
+          } else {
+            window.location = "/amchart/index.html";
+          }
+        </script>
 
 
     </head>
 
 
     <body>
-        <button>Log Out</button>
+        <button class="logoutButton">Log Out</button>
 
 
           <br>
            <br>
             <br>
-          <h1>Here's another chart I made using their Chart Editor online</h1>
           <br>
         <div id="chartdiv" style="height:500px;"></div>
 
@@ -51,13 +58,13 @@
              console.log("You Can Stay");
            } else {
              console.log("User is logged out");
-             window.location = "http://localhost:8888/amchart/index.html";
+             window.location = "/amchart/index.html";
            }
         });
 
 
         // myDataRef.createUser({
-        //   email    : "brotzky@gmail.com",
+        //   email    : "fsae@mail.mcgill.ca",
         //   password : "brotzky"
         // }, function(error, userData) {
         //   if (error) {
@@ -72,7 +79,7 @@
           console.log("You Can Stay");
         } else {
           console.log("User is logged out");
-          window.location = "http://localhost:8888/amchart/index.html";
+          window.location = "/amchart/index.html";
         }
 
         var auth = new FirebaseSimpleLogin(myDataRef, function(error, user) {

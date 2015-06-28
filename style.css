@@ -1,10 +1,131 @@
-body {
-	font-family: Tahoma,Arial,Verdana;
-	font-size: 12px;
-	color: black;
-}
 
-a:link {color: #84c4e2;}
-a:visited {color:#84c4e2;}
-a:hover {color: #cd82ad;}
-a:active {color: #84c4e2;}
+    * { -webkit-box-sizing:     border-box;
+        -moz-box-sizing:         border-box;
+        box-sizing:                  border-box;
+        -webkit-font-smoothing:  antialiased;
+        font-smoothing:               antialiased;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #4A4A4A;
+      text-rendering: optimizeLegibility;
+      -webkit-text-size-adjust: 100%;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      height: 100%;
+      font-family: "Helvetica Neue", Helvetica, sans-serif;
+      word-spacing: 0.1em;
+      border-top: 4px solid #990000;
+    }
+    .absolute-center {
+      position: absolute;
+      top: 40%;
+      -ms-transform: translateY(-50%);
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .login-container {
+      width: 400px;
+      padding: 20px 30px 40px;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.2);
+      border-radius: 3px;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+    }
+    .racing-logo {
+      margin-bottom: 25px;
+    }
+    .userName,
+    .userPass {
+      display: block;
+      width: 100%;
+      height: 42px;
+      padding: 3px 15px;
+      margin: 10px 0px 0px;
+      border: 1px solid rgba(0,0,0,0.2);
+      font-size: 1rem;
+    }
+    .userName::-webkit-input-placeholder,
+    .userPass::-webkit-input-placeholder{
+      color: rgba(0,0,0,0.6);
+    }
+
+    .userName:focus,
+    .userPass:focus,
+    .loginButton:focus {
+      outline: none;
+    }
+    .loginButton {
+      width: 100%;
+      height: 42px;
+      margin-top: 10px;
+      border: none;
+      background-color: #323a45;
+      color: #f9f9f9;
+      display: block;
+      font-size: 1.1em;
+      cursor: pointer;
+      -webkit-transition: background-color 300ms ease;
+      -moz-transition: background-color 300ms ease;
+      -ms-transition: background-color 300ms ease;
+      -o-transition: background-color 300ms ease;
+      -o-transition: background-color 300ms ease;
+    }
+    .loginButton:hover {
+      background-color: #1D2228;
+    }
+    .alignLogin {
+      padding-right: 18px;
+    }
+    .loginError {
+      display: none;
+      position: absolute;
+      bottom: -50px;
+      left: 0; right: 0;
+      margin: 0 auto;
+      text-align: center;
+      background-color: #D00000;
+      color: #fff;
+      padding: 10px 15px;
+      width: 75%;
+      border-radius: 3px;
+    }
+    .invalidLogin {
+      border: 1px solid #D00000;
+    }
+    .loginIcon {
+      display: inline-block;
+      color: #eee;
+      fill: #eee;
+      height: 19px;
+      width: 20px;
+      position: absolute;
+      margin: 2px;
+    }
+    .logoutButton {
+      float: right;
+      height: 30px;
+      padding: 0px 12px 5px;
+      border: none;
+      background-color: #990000;
+      color: #f9f9f9;
+      display: block;
+      font-size: 1em;
+      cursor: pointer;
+      font-weight: 600;
+      -webkit-transition: background-color 300ms ease;
+      -moz-transition: background-color 300ms ease;
+      -ms-transition: background-color 300ms ease;
+      -o-transition: background-color 300ms ease;
+      -o-transition: background-color 300ms ease;
+    }
+
+  </style>
