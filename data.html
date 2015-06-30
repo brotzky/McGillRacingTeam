@@ -4,7 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>McGill FSAE Racing</title>
-        <link rel="stylesheet" href="style.css" type="text/css">
+        <link rel="stylesheet" href="styles/style.css" type="text/css">
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
         <script type="text/javascript">
@@ -17,23 +17,24 @@
     </head>
     <body>
         <button class="logoutButton">Log Out</button>
-        <br>
-        <br>
-        <br>
         <select name="select" class="selectInput">
-        <option value="june152015.json" selected>June 15th 2015</option>
-          <option value="may152015.json">May 15th 2015</option>
-          <option value="march152015.json">March 15th 2015</option>
+        <option value="inputdata/june152015.json" selected>June 15th 2015</option>
+          <option value="inputdata/may152015.json">May 15th 2015</option>
+          <option value="inputdata/march152015.json">March 15th 2015</option>
         </select>
-        <div class="loadingMessage">Please wait, fetching your Data...</div>
-
-        <br>
+        <div class='loader hideLoading'>
+          <div class="loadingMessage">Fetching Data</div>
+          <div class='circle one'></div>
+          <div class='circle two'></div>
+          <div class='circle three'></div>
+        </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="http://www.amcharts.com/lib/3/serial.js"></script>
         <script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
-        <script type="text/javascript">
 
+        <script type="text/javascript">
+        AmCharts.ready(function(){
           var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
           // Log out button
           $('button').on('click', function(){
@@ -61,33 +62,24 @@
 
           // Function to parse the data
           var useData = function(originalJSON) {
-            console.log(originalJSON);
-
           var holderArr = [];
           for(prop in originalJSON) {
             for(secondProp in originalJSON[prop]) {
                 holderArr.push(originalJSON[prop][secondProp]);
             }
           }
-
-          console.log(holderArr);
-
           // Creating dynamic variables to fill
           var makers = []
           for (var i = 0; i < originalJSON.length; i++) {
             makers[i] = [];
           }
-
+          // Build all the objects to give to amcharts
           for (var i = 0; i < holderArr.length; i += (originalJSON.length-1)/2) {
-
-            console.log(originalJSON.length-1);
               var lapTime = holderArr[i+1];
               var timeOfDay = holderArr[i].toHHMMSS();
-              console.log(holderArr[i].toHHMMSS());
               tmp = {
                   'lapTime': lapTime,
                   'lapTimeOfDay': timeOfDay
-
               };
               makers[0].push(tmp);
 
@@ -267,8 +259,6 @@
               };
               makers[22].push(tmp);
           }
-          emptyArr = []
-
             var graphNames = [
                   "lapTimeOfDay",
                   "lapTime",
@@ -295,7 +285,6 @@
                   "lap_fuelp_min",
                   "lap_battv_mean",
                 ]
-
             var prettyColors = [
                 "#ed5153",
                 "#323a45",
@@ -382,22 +371,22 @@
 
           // Default view of Data selection
           var selectedValue = $('.selectInput > option:first-child').val();
-          $(".loadingMessage").show();
+          $(".hideLoading").show();
           $.getJSON( selectedValue, function( data ) {
                useData(data);
-               $(".loadingMessage").hide();
+               $(".hideLoading").fadeOut(333);
             });
 
           // Change Data file on user selection
           $(".selectInput").change(function (){
             var selectedValue = $(this).val();
-            $(".loadingMessage").show();
+            $(".hideLoading").show();
             $.getJSON( selectedValue, function( data ) {
                useData(data);
-               $(".loadingMessage").hide();
+               $(".hideLoading").fadeOut(333);
             });
           });
-
-        </script>
-      </body>
+        });
+      </script>
+    </body>
 </html>

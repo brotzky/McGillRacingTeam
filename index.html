@@ -7,7 +7,7 @@
   <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <title>McGill FSAE Racing</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 <div class="login-container absolute-center">
@@ -34,7 +34,7 @@ $('#login-form').keyup(function(event){
     } else {
       $('.login-container').fadeOut('fast');
       setTimeout(function(){
-        window.location = "/mrt/data";
+        window.location = "data";
       }, 300);
       console.log("Authenticated successfully with payload:", authData);
     }
@@ -53,7 +53,7 @@ $('#login-form').on('submit',function(event){
       $("input[class*='user']").addClass('invalidLogin');
       $('.loginError').fadeIn();
     } else {
-      window.location = "/mrt/data";
+      window.location = "data";
       console.log("Authenticated successfully with payload:", authData);
     }
   });
