@@ -28,7 +28,11 @@
           <div class='circle two'></div>
           <div class='circle three'></div>
         </div>
+
+        <div id="amchartContainer"></div>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="papaparse/papaparse.min.js"></script>
         <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
         <script src="http://www.amcharts.com/lib/3/serial.js"></script>
         <script src="http://www.amcharts.com/lib/3/plugins/dataloader/dataloader.min.js"></script>
@@ -62,7 +66,9 @@
 
           // Function to parse the data
           var useData = function(originalJSON) {
+
           var holderArr = [];
+
           for(prop in originalJSON) {
             for(secondProp in originalJSON[prop]) {
                 holderArr.push(originalJSON[prop][secondProp]);
@@ -312,15 +318,33 @@
                 "#990000"
             ]
 
+            // If Container, remove it so we can build a new one.
+            if($('#amchartContainer').children().length > 1) {
+                $('#amchartContainer').remove();
+            }
+
+                // Loop to make the divs + charts
               for (i = 0; i < graphNames.length-1; i++) {
 
+                // If not amChartContainer, make one to insert graphs into
+                if(!($('#amchartContainer').length)) {
+                  console.log('making a graph container');
+                  var amChartContainer = document.createElement('div');
+                  amChartContainer.id = 'amchartContainer';
+                  document.getElementsByTagName('body')[0].appendChild(amChartContainer);
+                }
+
                 header = document.createElement('h2');
+                amChartContainer =  document.getElementById('amchartContainer');
+
                 header.innerHTML = graphNames[i+1];
                 temp = document.createElement('div');
                 temp.id = 'chartdiv'+[i];
                 temp.style.height = "500px";
-                document.getElementsByTagName('body')[0].appendChild(header);
-                document.getElementsByTagName('body')[0].appendChild(temp);
+
+
+                amChartContainer.appendChild(header);
+                amChartContainer.appendChild(temp);
 
                 var divID = temp.id.toString();
 
