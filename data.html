@@ -18,9 +18,10 @@
     <body>
         <button class="logoutButton">Log Out</button>
         <select name="select" class="selectInput">
-        <option value="inputdata/june152015.json" selected>June 15th 2015</option>
+          <option value="inputdata/june152015.json" selected>June 15th 2015</option>
           <option value="inputdata/may152015.json">May 15th 2015</option>
           <option value="inputdata/march152015.json">March 15th 2015</option>
+          <option value="inputdata/test.json">test</option>
         </select>
         <div class='loader hideLoading'>
           <div class="loadingMessage">Fetching Data</div>
@@ -79,6 +80,9 @@
           for (var i = 0; i < originalJSON.length; i++) {
             makers[i] = [];
           }
+
+          console.log(originalJSON.length);
+          console.log(holderArr);
           // Build all the objects to give to amcharts
           for (var i = 0; i < holderArr.length; i += (originalJSON.length-1)/2) {
               var lapTime = holderArr[i+1];
@@ -97,7 +101,7 @@
               };
               makers[1].push(tmp2);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_ect_max = holderArr[i+3];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -105,7 +109,7 @@
               };
               makers[2].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_ect_mean = holderArr[i+4];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -113,7 +117,7 @@
               };
               makers[3].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_oilt_max = holderArr[i+5];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -121,7 +125,7 @@
               };
               makers[4].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_oilt_mean = holderArr[i+6];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -129,7 +133,7 @@
               };
               makers[5].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_iat_max = holderArr[i+7];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -137,7 +141,7 @@
               };
               makers[6].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_iat_mean = holderArr[i+8];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -145,7 +149,7 @@
               };
               makers[7].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rhf_max = holderArr[i+9];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -153,7 +157,7 @@
               };
               makers[8].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rhr_max = holderArr[i+10];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -161,7 +165,7 @@
               };
               makers[9].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rhf_mean = holderArr[i+11];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -169,7 +173,7 @@
               };
               makers[10].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rhr_mean = holderArr[i+12];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -177,7 +181,7 @@
               };
               makers[11].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_pbrakef_max = holderArr[i+13];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -185,7 +189,7 @@
               };
               makers[12].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_pbraker_max = holderArr[i+14];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -193,7 +197,7 @@
               };
               makers[13].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_brakebias_mean = holderArr[i+15];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -201,7 +205,7 @@
               };
               makers[14].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rollf_max = holderArr[i+16];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -209,7 +213,7 @@
               };
               makers[15].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rollr_max = holderArr[i+17];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -217,7 +221,7 @@
               };
               makers[16].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_rpm_max = holderArr[i+18];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -225,7 +229,7 @@
               };
               makers[17].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_exh_t_max = holderArr[i+19];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -233,7 +237,7 @@
               };
               makers[18].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_oilp_mean = holderArr[i+20];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -241,7 +245,7 @@
               };
               makers[19].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_oilp_min = holderArr[i+21];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -249,7 +253,7 @@
               };
               makers[20].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_fuelp_min = holderArr[i+22];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
@@ -257,14 +261,38 @@
               };
               makers[21].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
+
               var lap_battv_mean = holderArr[i+23];
               tmp = {
                   'lapTimeOfDay': timeOfDay,
                   'lap_battv_mean': lap_battv_mean
               };
               makers[22].push(tmp);
+
+
+               var CL_F = holderArr[i+24];
+              tmp = {
+                  'lapTimeOfDay': timeOfDay,
+                  'CL_F': CL_F
+              };
+              makers[23].push(tmp);
+
+              var CL_R = holderArr[i+25];
+              tmp = {
+                  'lapTimeOfDay': timeOfDay,
+                  'CL_R': CL_R
+              };
+              makers[24].push(tmp);
+
+              var CL = holderArr[i+26];
+              tmp = {
+                  'lapTimeOfDay': timeOfDay,
+                  'CL': CL
+              };
+              makers[25].push(tmp);
+
           }
+
             var graphNames = [
                   "lapTimeOfDay",
                   "lapTime",
@@ -290,6 +318,9 @@
                   "lap_oilp_min",
                   "lap_fuelp_min",
                   "lap_battv_mean",
+                  "CL_R",
+                  "CL_F",
+                  "CL"
                 ]
             var prettyColors = [
                 "#ed5153",
@@ -315,7 +346,10 @@
                 "#00BCD4",
                 "#455A64",
                 "#1565C0",
-                "#990000"
+                "#990000",
+                "#673AB7",
+                "#D32F2F",
+                "#eee"
             ]
 
             // If Container, remove it so we can build a new one.
@@ -403,11 +437,16 @@
 
           // Change Data file on user selection
           $(".selectInput").change(function (){
+
             var selectedValue = $(this).val();
+            connect.log(selectedValue);
             $(".hideLoading").show();
+
             $.getJSON( selectedValue, function( data ) {
+
                useData(data);
                $(".hideLoading").fadeOut(333);
+
             });
           });
         });
