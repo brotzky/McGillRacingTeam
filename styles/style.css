@@ -6,7 +6,7 @@
         font-smoothing:               antialiased;
     }
     html, body {
-      margin: 0;
+      margin: 30px 0 0px;
       padding: 0;
       background-color: #fff;
       color: #4A4A4A;
@@ -17,7 +17,6 @@
       height: 100%;
       font-family: "Helvetica Neue", Helvetica, sans-serif;
       word-spacing: 0.1em;
-      border-top: 4px solid #990000;
     }
     h2 {
       text-align: center;
@@ -121,17 +120,39 @@
       position: absolute;
       margin: 2px;
     }
+    nav {
+      position: fixed;
+      z-index: 2;
+      height: 50px;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      border-top: 2px solid rgba(0,0,0,0.08);
+      border-bottom: 2px solid rgba(0,0,0,0.08);
+/*      box-shadow: 0px 0px 12px rgba(0,0,0,0.1);
+*/    }
+    nav ul {
+      float: right;
+      top: -15px;
+      position: fixed;
+      right: 0px;
+    }
+    nav ul li {
+      float: right;
+      list-style: none;
+      padding: 13px 15px;
+      border-left: 2px solid #eee;
+    }
     .logoutButton {
       float: right;
-      height: 40px;
-      padding: 0px 15px 5px;
       border: none;
-      background-color: #990000;
-      color: #f9f9f9;
+      color: #434343;
       display: block;
+      background-color: transparent;
       font-size: 1em;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 300;
       -webkit-transition: background-color 300ms ease;
       -moz-transition: background-color 300ms ease;
       -ms-transition: background-color 300ms ease;
@@ -139,16 +160,18 @@
       -o-transition: background-color 300ms ease;
     }
     .selectInput {
-      position: absolute;
-      top: 13px;
+      float: right;
+      top: 0px;
       left: 5px;
-      background-color: #fff;
+      background-color:transparent;
       color: #434343;
-      border: 1px solid #990000;
+      border: none;
       border-radius: 0px;
-      height: 32px;
       font-size: 1em;
       /* -webkit-appearance: none; */
+    }
+    .selectInput:hover {
+      cursor: pointer;
     }
     .selectInput:focus {
       outline: none;

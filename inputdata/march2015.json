@@ -1,4 +1,4 @@
- [
+[
     {
         "lapTimeOfDay": "42127",
         "lapTime": "40.48",
@@ -23,7 +23,10 @@
         "lap_oilp_mean": "94.46",
         "lap_oilp_min": "42.577",
         "lap_fuelp_min": "62.134",
-        "lap_battv_mean": "12.613"
+        "lap_battv_mean": "12.613",
+        "CL_F": "5.0415",
+        "CL_R": "4.8057",
+        "CL": "9.8472"
     },
     {
         "lapTimeOfDay": "42167",
@@ -49,7 +52,10 @@
         "lap_oilp_mean": "83.294",
         "lap_oilp_min": "28.384",
         "lap_fuelp_min": "61.66",
-        "lap_battv_mean": "12.654"
+        "lap_battv_mean": "12.654",
+        "CL_F": "2.1687",
+        "CL_R": "1.9025",
+        "CL": "4.0712"
     },
     {
         "lapTimeOfDay": "42199",
@@ -75,7 +81,10 @@
         "lap_oilp_mean": "79.066",
         "lap_oilp_min": "25.2",
         "lap_fuelp_min": "61.967",
-        "lap_battv_mean": "12.695"
+        "lap_battv_mean": "12.695",
+        "CL_F": "1.9119",
+        "CL_R": "1.8243",
+        "CL": "3.7361"
     },
     {
         "lapTimeOfDay": "42228",
@@ -101,7 +110,10 @@
         "lap_oilp_mean": "74.657",
         "lap_oilp_min": "22.52",
         "lap_fuelp_min": "61.893",
-        "lap_battv_mean": "12.756"
+        "lap_battv_mean": "12.756",
+        "CL_F": "2.0302",
+        "CL_R": "1.5757",
+        "CL": "3.6059"
     },
     {
         "lapTimeOfDay": "42259",
@@ -127,7 +139,10 @@
         "lap_oilp_mean": "69.237",
         "lap_oilp_min": "16.146",
         "lap_fuelp_min": "61.996",
-        "lap_battv_mean": "12.848"
+        "lap_battv_mean": "12.848",
+        "CL_F": "2.7577",
+        "CL_R": "2.3962",
+        "CL": "5.1539"
     },
     {
         "lapTimeOfDay": "42289",
@@ -153,7 +168,10 @@
         "lap_oilp_mean": "57.956",
         "lap_oilp_min": "14.504",
         "lap_fuelp_min": "62.817",
-        "lap_battv_mean": "12.989"
+        "lap_battv_mean": "12.989",
+        "CL_F": "15.109",
+        "CL_R": "15.719",
+        "CL": "30.828"
     },
     {
         "lapTimeOfDay": "43282",
@@ -179,7 +197,10 @@
         "lap_oilp_mean": "69.973",
         "lap_oilp_min": "27.449",
         "lap_fuelp_min": "61.543",
-        "lap_battv_mean": "12.946"
+        "lap_battv_mean": "12.946",
+        "CL_F": "3.2184",
+        "CL_R": "3.3353",
+        "CL": "6.5537"
     },
     {
         "lapTimeOfDay": "43314",
@@ -205,7 +226,10 @@
         "lap_oilp_mean": "56.811",
         "lap_oilp_min": "20.905",
         "lap_fuelp_min": "61.499",
-        "lap_battv_mean": "12.971"
+        "lap_battv_mean": "12.971",
+        "CL_F": "2.215",
+        "CL_R": "1.7686",
+        "CL": "3.9836"
     },
     {
         "lapTimeOfDay": "43343",
@@ -231,7 +255,10 @@
         "lap_oilp_mean": "55.219",
         "lap_oilp_min": "15.786",
         "lap_fuelp_min": "61.642",
-        "lap_battv_mean": "13.019"
+        "lap_battv_mean": "13.019",
+        "CL_F": "2.0477",
+        "CL_R": "1.6448",
+        "CL": "3.6926"
     },
     {
         "lapTimeOfDay": "43372",
@@ -257,7 +284,10 @@
         "lap_oilp_mean": "57.255",
         "lap_oilp_min": "24.861",
         "lap_fuelp_min": "61.553",
-        "lap_battv_mean": "12.984"
+        "lap_battv_mean": "12.984",
+        "CL_F": "2.1674",
+        "CL_R": "1.6928",
+        "CL": "3.8603"
     },
     {
         "lapTimeOfDay": "43401",
@@ -283,7 +313,10 @@
         "lap_oilp_mean": "54.143",
         "lap_oilp_min": "18.46",
         "lap_fuelp_min": "61.846",
-        "lap_battv_mean": "13.072"
+        "lap_battv_mean": "13.072",
+        "CL_F": "2.1356",
+        "CL_R": "1.6748",
+        "CL": "3.8104"
     },
     {
         "lapTimeOfDay": "43429",
@@ -309,7 +342,10 @@
         "lap_oilp_mean": "54.37",
         "lap_oilp_min": "22.646",
         "lap_fuelp_min": "61.348",
-        "lap_battv_mean": "13.046"
+        "lap_battv_mean": "13.046",
+        "CL_F": "2.1651",
+        "CL_R": "1.812",
+        "CL": "3.9771"
     },
     {
         "lapTimeOfDay": "43458",
@@ -335,7 +371,10 @@
         "lap_oilp_mean": "52.525",
         "lap_oilp_min": "17.05",
         "lap_fuelp_min": "61.649",
-        "lap_battv_mean": "13.077"
+        "lap_battv_mean": "13.077",
+        "CL_F": "2.0489",
+        "CL_R": "1.5412",
+        "CL": "3.5901"
     },
     {
         "lapTimeOfDay": "43486",
@@ -361,7 +400,10 @@
         "lap_oilp_mean": "50.866",
         "lap_oilp_min": "18.395",
         "lap_fuelp_min": "61.62",
-        "lap_battv_mean": "13.08"
+        "lap_battv_mean": "13.08",
+        "CL_F": "2.0209",
+        "CL_R": "1.6413",
+        "CL": "3.6622"
     },
     {
         "lapTimeOfDay": "43515",
@@ -387,7 +429,10 @@
         "lap_oilp_mean": "55.52",
         "lap_oilp_min": "31.727",
         "lap_fuelp_min": "61.444",
-        "lap_battv_mean": "13.021"
+        "lap_battv_mean": "13.021",
+        "CL_F": "2.7905",
+        "CL_R": "2.4304",
+        "CL": "5.2208"
     },
     {
         "lapTimeOfDay": "43544",
@@ -413,7 +458,10 @@
         "lap_oilp_mean": "48.821",
         "lap_oilp_min": "22.166",
         "lap_fuelp_min": "61.428",
-        "lap_battv_mean": "13.069"
+        "lap_battv_mean": "13.069",
+        "CL_F": "2.096",
+        "CL_R": "1.6345",
+        "CL": "3.7306"
     },
     {
         "lapTimeOfDay": "43572",
@@ -439,7 +487,10 @@
         "lap_oilp_mean": "48.342",
         "lap_oilp_min": "21.9",
         "lap_fuelp_min": "61.691",
-        "lap_battv_mean": "13.087"
+        "lap_battv_mean": "13.087",
+        "CL_F": "2.0702",
+        "CL_R": "1.7818",
+        "CL": "3.852"
     },
     {
         "lapTimeOfDay": "43601",
@@ -465,7 +516,10 @@
         "lap_oilp_mean": "40.43",
         "lap_oilp_min": "14.504",
         "lap_fuelp_min": "60.055",
-        "lap_battv_mean": "13.099"
+        "lap_battv_mean": "13.099",
+        "CL_F": "48.505",
+        "CL_R": "49.342",
+        "CL": "97.847"
     },
     {
         "lapTimeOfDay": "49767",
@@ -491,7 +545,10 @@
         "lap_oilp_mean": "89.379",
         "lap_oilp_min": "34.587",
         "lap_fuelp_min": "61.612",
-        "lap_battv_mean": "12.864"
+        "lap_battv_mean": "12.864",
+        "CL_F": "2.6868",
+        "CL_R": "2.7674",
+        "CL": "5.4542"
     },
     {
         "lapTimeOfDay": "49799",
@@ -517,7 +574,10 @@
         "lap_oilp_mean": "70.834",
         "lap_oilp_min": "24.553",
         "lap_fuelp_min": "61.26",
-        "lap_battv_mean": "12.889"
+        "lap_battv_mean": "12.889",
+        "CL_F": "1.8491",
+        "CL_R": "1.7547",
+        "CL": "3.6038"
     },
     {
         "lapTimeOfDay": "49828",
@@ -543,7 +603,10 @@
         "lap_oilp_mean": "74.113",
         "lap_oilp_min": "37.987",
         "lap_fuelp_min": "61.758",
-        "lap_battv_mean": "12.873"
+        "lap_battv_mean": "12.873",
+        "CL_F": "2.3773",
+        "CL_R": "2.1082",
+        "CL": "4.4854"
     },
     {
         "lapTimeOfDay": "49859",
@@ -569,7 +632,10 @@
         "lap_oilp_mean": "70.828",
         "lap_oilp_min": "23.719",
         "lap_fuelp_min": "61.745",
-        "lap_battv_mean": "12.813"
+        "lap_battv_mean": "12.813",
+        "CL_F": "2.12",
+        "CL_R": "2.0485",
+        "CL": "4.1686"
     },
     {
         "lapTimeOfDay": "49889",
@@ -595,7 +661,10 @@
         "lap_oilp_mean": "60.044",
         "lap_oilp_min": "19.517",
         "lap_fuelp_min": "61.198",
-        "lap_battv_mean": "12.933"
+        "lap_battv_mean": "12.933",
+        "CL_F": "1.9614",
+        "CL_R": "1.7784",
+        "CL": "3.7398"
     },
     {
         "lapTimeOfDay": "49918",
@@ -621,7 +690,10 @@
         "lap_oilp_mean": "57.841",
         "lap_oilp_min": "18.411",
         "lap_fuelp_min": "61.335",
-        "lap_battv_mean": "12.967"
+        "lap_battv_mean": "12.967",
+        "CL_F": "2.3374",
+        "CL_R": "1.9556",
+        "CL": "4.293"
     },
     {
         "lapTimeOfDay": "49947",
@@ -647,7 +719,10 @@
         "lap_oilp_mean": "27.588",
         "lap_oilp_min": "14.504",
         "lap_fuelp_min": "60.112",
-        "lap_battv_mean": "12.903"
+        "lap_battv_mean": "12.903",
+        "CL_F": "8.7107",
+        "CL_R": "8.4562",
+        "CL": "17.167"
     },
     {
         "lapTimeOfDay": "50684",
@@ -673,7 +748,10 @@
         "lap_oilp_mean": "70.017",
         "lap_oilp_min": "32.18",
         "lap_fuelp_min": "61.659",
-        "lap_battv_mean": "12.963"
+        "lap_battv_mean": "12.963",
+        "CL_F": "2.964",
+        "CL_R": "3.9887",
+        "CL": "6.9527"
     },
     {
         "lapTimeOfDay": "50715",
@@ -699,7 +777,10 @@
         "lap_oilp_mean": "57.689",
         "lap_oilp_min": "18.134",
         "lap_fuelp_min": "60.569",
-        "lap_battv_mean": "13.055"
+        "lap_battv_mean": "13.055",
+        "CL_F": "2.1587",
+        "CL_R": "1.5294",
+        "CL": "3.6881"
     },
     {
         "lapTimeOfDay": "50744",
@@ -725,7 +806,10 @@
         "lap_oilp_mean": "54.94",
         "lap_oilp_min": "18.612",
         "lap_fuelp_min": "61.311",
-        "lap_battv_mean": "13.024"
+        "lap_battv_mean": "13.024",
+        "CL_F": "2.0433",
+        "CL_R": "1.7299",
+        "CL": "3.7732"
     },
     {
         "lapTimeOfDay": "50772",
@@ -751,7 +835,10 @@
         "lap_oilp_mean": "53",
         "lap_oilp_min": "29.817",
         "lap_fuelp_min": "61.246",
-        "lap_battv_mean": "13.061"
+        "lap_battv_mean": "13.061",
+        "CL_F": "3.9999",
+        "CL_R": "3.9184",
+        "CL": "7.9183"
     },
     {
         "lapTimeOfDay": "50803",
@@ -777,7 +864,10 @@
         "lap_oilp_mean": "52.979",
         "lap_oilp_min": "14.971",
         "lap_fuelp_min": "61.342",
-        "lap_battv_mean": "13.058"
+        "lap_battv_mean": "13.058",
+        "CL_F": "2.0632",
+        "CL_R": "1.723",
+        "CL": "3.7862"
     },
     {
         "lapTimeOfDay": "50832",
@@ -803,7 +893,10 @@
         "lap_oilp_mean": "57.851",
         "lap_oilp_min": "33.278",
         "lap_fuelp_min": "60.632",
-        "lap_battv_mean": "13.075"
+        "lap_battv_mean": "13.075",
+        "CL_F": "4.238",
+        "CL_R": "4.099",
+        "CL": "8.3369"
     },
     {
         "lapTimeOfDay": "59839",
@@ -829,7 +922,10 @@
         "lap_oilp_mean": "95.177",
         "lap_oilp_min": "44.644",
         "lap_fuelp_min": "60.055",
-        "lap_battv_mean": "12.804"
+        "lap_battv_mean": "12.804",
+        "CL_F": "3.7355",
+        "CL_R": "4.0697",
+        "CL": "7.8052"
     },
     {
         "lapTimeOfDay": "59877",
@@ -855,7 +951,10 @@
         "lap_oilp_mean": "68.882",
         "lap_oilp_min": "14.827",
         "lap_fuelp_min": "59.089",
-        "lap_battv_mean": "12.804"
+        "lap_battv_mean": "12.804",
+        "CL_F": "1.918",
+        "CL_R": "2.1744",
+        "CL": "4.0924"
     },
     {
         "lapTimeOfDay": "59909",
@@ -881,7 +980,10 @@
         "lap_oilp_mean": "69.729",
         "lap_oilp_min": "15.055",
         "lap_fuelp_min": "55.024",
-        "lap_battv_mean": "12.678"
+        "lap_battv_mean": "12.678",
+        "CL_F": "1.6828",
+        "CL_R": "1.8915",
+        "CL": "3.5743"
     },
     {
         "lapTimeOfDay": "59937",
@@ -907,7 +1009,10 @@
         "lap_oilp_mean": "71.193",
         "lap_oilp_min": "19.437",
         "lap_fuelp_min": "44.997",
-        "lap_battv_mean": "12.668"
+        "lap_battv_mean": "12.668",
+        "CL_F": "2.0681",
+        "CL_R": "1.6742",
+        "CL": "3.7422"
     },
     {
         "lapTimeOfDay": "59966",
@@ -933,7 +1038,10 @@
         "lap_oilp_mean": "44.748",
         "lap_oilp_min": "14.504",
         "lap_fuelp_min": "60.152",
-        "lap_battv_mean": "12.99"
+        "lap_battv_mean": "12.99",
+        "CL_F": "5.2941",
+        "CL_R": "5.3535",
+        "CL": "10.648"
     },
     {
         "lapTimeOfDay": "60046",
@@ -959,7 +1067,10 @@
         "lap_oilp_mean": "63.455",
         "lap_oilp_min": "14.503",
         "lap_fuelp_min": "51.6",
-        "lap_battv_mean": "12.723"
+        "lap_battv_mean": "12.723",
+        "CL_F": "2.741",
+        "CL_R": "2.5197",
+        "CL": "5.2607"
     },
     {
         "lapTimeOfDay": "60077",
@@ -985,7 +1096,10 @@
         "lap_oilp_mean": "56.144",
         "lap_oilp_min": "0",
         "lap_fuelp_min": "19.62",
-        "lap_battv_mean": "12.777"
+        "lap_battv_mean": "12.777",
+        "CL_F": "2.1087",
+        "CL_R": "2.0161",
+        "CL": "4.1248"
     },
     {
         "lapTimeOfDay": "60106",
@@ -1011,7 +1125,10 @@
         "lap_oilp_mean": "60.099",
         "lap_oilp_min": "15.594",
         "lap_fuelp_min": "56.972",
-        "lap_battv_mean": "12.838"
+        "lap_battv_mean": "12.838",
+        "CL_F": "2.0902",
+        "CL_R": "1.7363",
+        "CL": "3.8265"
     },
     {
         "lapTimeOfDay": "60135",
@@ -1037,7 +1154,10 @@
         "lap_oilp_mean": "60.522",
         "lap_oilp_min": "18.904",
         "lap_fuelp_min": "22.663",
-        "lap_battv_mean": "12.844"
+        "lap_battv_mean": "12.844",
+        "CL_F": "2.0295",
+        "CL_R": "1.8874",
+        "CL": "3.9169"
     },
     {
         "lapTimeOfDay": "60164",
@@ -1063,7 +1183,10 @@
         "lap_oilp_mean": "38.123",
         "lap_oilp_min": "0",
         "lap_fuelp_min": "14.591",
-        "lap_battv_mean": "12.78"
+        "lap_battv_mean": "12.78",
+        "CL_F": "2.0085",
+        "CL_R": "1.7495",
+        "CL": "3.758"
     },
     {
         "lapTimeOfDay": "64067",
@@ -1089,7 +1212,10 @@
         "lap_oilp_mean": "89.816",
         "lap_oilp_min": "41.642",
         "lap_fuelp_min": "44.162",
-        "lap_battv_mean": "12.81"
+        "lap_battv_mean": "12.81",
+        "CL_F": "4.2666",
+        "CL_R": "4.7545",
+        "CL": "9.0211"
     },
     {
         "lapTimeOfDay": "64105",
@@ -1115,7 +1241,10 @@
         "lap_oilp_mean": "70.706",
         "lap_oilp_min": "14.503",
         "lap_fuelp_min": "25.429",
-        "lap_battv_mean": "12.893"
+        "lap_battv_mean": "12.893",
+        "CL_F": "2.0718",
+        "CL_R": "1.9085",
+        "CL": "3.9803"
     },
     {
         "lapTimeOfDay": "64135",
@@ -1141,7 +1270,10 @@
         "lap_oilp_mean": "75.767",
         "lap_oilp_min": "19.381",
         "lap_fuelp_min": "58.179",
-        "lap_battv_mean": "12.824"
+        "lap_battv_mean": "12.824",
+        "CL_F": "2.0987",
+        "CL_R": "1.8784",
+        "CL": "3.9771"
     },
     {
         "lapTimeOfDay": "64163",
@@ -1167,7 +1299,10 @@
         "lap_oilp_mean": "65.168",
         "lap_oilp_min": "18.276",
         "lap_fuelp_min": "57.123",
-        "lap_battv_mean": "12.989"
+        "lap_battv_mean": "12.989",
+        "CL_F": "2.1418",
+        "CL_R": "1.7994",
+        "CL": "3.9412"
     },
     {
         "lapTimeOfDay": "64192",
@@ -1193,7 +1328,10 @@
         "lap_oilp_mean": "62.124",
         "lap_oilp_min": "17.25",
         "lap_fuelp_min": "60.197",
-        "lap_battv_mean": "12.981"
+        "lap_battv_mean": "12.981",
+        "CL_F": "2.3996",
+        "CL_R": "1.9394",
+        "CL": "4.339"
     },
     {
         "lapTimeOfDay": "64221",
@@ -1219,7 +1357,10 @@
         "lap_oilp_mean": "61.618",
         "lap_oilp_min": "22.754",
         "lap_fuelp_min": "56.901",
-        "lap_battv_mean": "13.041"
+        "lap_battv_mean": "13.041",
+        "CL_F": "1.9562",
+        "CL_R": "1.8507",
+        "CL": "3.8069"
     },
     {
         "lapTimeOfDay": "64251",
@@ -1245,7 +1386,10 @@
         "lap_oilp_mean": "63.933",
         "lap_oilp_min": "17.913",
         "lap_fuelp_min": "59.069",
-        "lap_battv_mean": "12.98"
+        "lap_battv_mean": "12.98",
+        "CL_F": "2.1645",
+        "CL_R": "1.9582",
+        "CL": "4.1227"
     },
     {
         "lapTimeOfDay": "64280",
@@ -1271,6 +1415,9 @@
         "lap_oilp_mean": "19.55",
         "lap_oilp_min": "0",
         "lap_fuelp_min": "14.504",
-        "lap_battv_mean": "12.908"
+        "lap_battv_mean": "12.908",
+        "CL_F": "2.3592",
+        "CL_R": "2.0394",
+        "CL": "4.3985"
     }
 ]

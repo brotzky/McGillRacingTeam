@@ -16,13 +16,22 @@
         </script>
     </head>
     <body>
-        <button class="logoutButton">Log Out</button>
-        <select name="select" class="selectInput">
-          <option value="inputdata/june152015.json" selected>June 15th 2015</option>
-          <option value="inputdata/may152015.json">May 15th 2015</option>
-          <option value="inputdata/march152015.json">March 15th 2015</option>
-          <option value="inputdata/test.json">test</option>
-        </select>
+        <header>
+          <nav>
+            <ul>
+              <li><button class="logoutButton">Log Out</button></li>
+              <li>
+                <select name="select" class="selectInput">
+                  <option value="inputdata/june152015.json" selected>June 15th 2015</option>
+                  <option value="inputdata/test.json">March 15th 2015</option>
+                </select>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
+
+
         <div class='loader hideLoading'>
           <div class="loadingMessage">Fetching Data</div>
           <div class='circle one'></div>
@@ -68,6 +77,17 @@
           // Function to parse the data
           var useData = function(originalJSON) {
 
+             function count(obj) {
+                var count=0;
+                for(var prop in obj) {
+                  for( var secondProp in obj[prop]) {
+                      ++count;
+                   }
+                }
+                return count/originalJSON.length;
+             }
+             var numProperties = (count(originalJSON));
+
           var holderArr = [];
 
           for(prop in originalJSON) {
@@ -77,14 +97,16 @@
           }
           // Creating dynamic variables to fill
           var makers = []
-          for (var i = 0; i < originalJSON.length; i++) {
+
+          console.log("orignalJSON.length: " + originalJSON.length + " | numProperties: " + numProperties);
+          for (var i = 0; i < (numProperties*2); i++) {
             makers[i] = [];
           }
 
-          console.log(originalJSON.length);
-          console.log(holderArr);
           // Build all the objects to give to amcharts
-          for (var i = 0; i < holderArr.length; i += (originalJSON.length-1)/2) {
+          for (var i = 0; i < holderArr.length; i += numProperties) {
+
+
               var lapTime = holderArr[i+1];
               var timeOfDay = holderArr[i].toHHMMSS();
               tmp = {
@@ -290,8 +312,9 @@
                   'CL': CL
               };
               makers[25].push(tmp);
-
           }
+
+
 
             var graphNames = [
                   "lapTimeOfDay",
@@ -322,6 +345,10 @@
                   "CL_F",
                   "CL"
                 ]
+
+                // Stops from building unnecessary empty graphs
+                graphNames.length = numProperties;
+
             var prettyColors = [
                 "#ed5153",
                 "#323a45",
@@ -346,10 +373,9 @@
                 "#00BCD4",
                 "#455A64",
                 "#1565C0",
+                "#4CAF50",
                 "#990000",
-                "#673AB7",
-                "#D32F2F",
-                "#eee"
+                "#283593"
             ]
 
             // If Container, remove it so we can build a new one.
@@ -362,7 +388,6 @@
 
                 // If not amChartContainer, make one to insert graphs into
                 if(!($('#amchartContainer').length)) {
-                  console.log('making a graph container');
                   var amChartContainer = document.createElement('div');
                   amChartContainer.id = 'amchartContainer';
                   document.getElementsByTagName('body')[0].appendChild(amChartContainer);
@@ -390,7 +415,7 @@
                       "autoMarginOffset": 25,
                       "dataProvider": makers[i],
                       "balloon": {
-                        "cornerRadius": 6
+                        "cornerRadius": 0
                       },
                       "valueAxes": [{
                         "axisAlpha": 0
@@ -439,11 +464,9 @@
           $(".selectInput").change(function (){
 
             var selectedValue = $(this).val();
-            connect.log(selectedValue);
             $(".hideLoading").show();
 
             $.getJSON( selectedValue, function( data ) {
-
                useData(data);
                $(".hideLoading").fadeOut(333);
 
