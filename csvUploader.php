@@ -11,19 +11,19 @@ if(isset($_POST["submit"])) {
 if (file_exists($target_file)) {
     echo "Sorry, file already exists.";
     $uploadOk = 0;
-    break;
+    return;
 }
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 50000) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
-    break;
+    return;
 }
 // Allow certain file formats
 if($imageFileType != "csv" ) {
     echo "Sorry, only CSV fromatted Data";
     $uploadOk = 0;
-    break;
+    return;
 }
 
 if((strlen($imageFileType) > 15) ) {
@@ -34,7 +34,7 @@ if((strlen($imageFileType) > 15) ) {
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
     echo "Sorry, your file was not uploaded.";
-    break;
+    return;
 
 // if everything is ok, try to upload file
 } else {

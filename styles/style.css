@@ -342,14 +342,11 @@
     }
     .toBeUploaded {
       text-align: right;
-      position: fixed;
-        top: 59px;
-        border: none;
-        width: 252px;
-        left: 510px;
-        top: 2px;
-        height: 48px;
-        font-size: 0.8rem;
+      border: none;
+      height: 48px;
+      font-size: 0.8rem;
+      padding: 25px 25px;
+      margin-top: 1px;
     }
     .uploadMessage {
       position: fixed;
