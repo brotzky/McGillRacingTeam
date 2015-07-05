@@ -51,6 +51,7 @@
 
         <script type="text/javascript">
         AmCharts.ready(function(){
+          $('nav').addClass('onload-reveal');
           var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
           // Log out button
           $('button').on('click', function(){
@@ -381,9 +382,7 @@
             ]
 
             // If Container, remove it so we can build a new one.
-            if($('#amchartContainer').children().length > 1) {
-                $('#amchartContainer').remove();
-            }
+
             var sideList = document.getElementById('sideList');
                 // Loop to make the divs + charts
               for (i = 0; i < graphNames.length-1; i++) {
@@ -484,6 +483,15 @@
             var selectedValue = $(this).val();
             $(".hideLoading").show();
             $('aside').removeClass('aside-active');
+
+            if($('#amchartContainer').children().length > 1) {
+                $('#amchartContainer').fadeOut(300);
+                setTimeout(function(){
+                  $('#amchartContainer').remove();
+                  $('#sideList').children().remove();
+                },300);
+
+            }
 
             // Added in setTimout to give aside time to transform: translateX(0%)
             setTimeout(function(){
