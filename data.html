@@ -18,6 +18,7 @@
     <body>
         <header>
           <nav>
+            <div class="nav-logo"><img src="img/mcgill-fsae-logo-car-only.png"></div>
             <ul>
               <li><button class="logoutButton">Log Out</button></li>
               <li>
@@ -29,8 +30,9 @@
             </ul>
           </nav>
         </header>
-
-
+        <aside>
+            <ul id="sideList"></ul>
+        </aside>
 
         <div class='loader hideLoading'>
           <div class="loadingMessage">Fetching Data</div>
@@ -382,7 +384,7 @@
             if($('#amchartContainer').children().length > 1) {
                 $('#amchartContainer').remove();
             }
-
+            var sideList = document.getElementById('sideList');
                 // Loop to make the divs + charts
               for (i = 0; i < graphNames.length-1; i++) {
 
@@ -394,16 +396,31 @@
                 }
 
                 header = document.createElement('h2');
+                header.id = graphNames[i+1];
                 amChartContainer =  document.getElementById('amchartContainer');
 
                 header.innerHTML = graphNames[i+1];
                 temp = document.createElement('div');
                 temp.id = 'chartdiv'+[i];
-                temp.style.height = "500px";
+                temp.style.height = "450px";
+
+
+                // Aside navigation builder
+                var amChartList = document.createElement("li");
+                var amChartAnchor = document.createElement('a');
+
+
+                amChartAnchor.href = '#' + graphNames[i+1];
+                amChartAnchor.innerHTML = graphNames[i+1];
+                amChartList.appendChild(amChartAnchor);
+
+
+                amChartList.innerHTML = "<a href='#"+graphNames[i+1]+"'>" + graphNames[i+1]+ " </a>";
 
 
                 amChartContainer.appendChild(header);
                 amChartContainer.appendChild(temp);
+                sideList.appendChild(amChartList);
 
                 var divID = temp.id.toString();
 
@@ -421,7 +438,7 @@
                         "axisAlpha": 0
                       }],
                       "graphs": [{
-                        "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]] sec</span></b>",
+                        "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
                         "bullet": "round",
                         "bulletSize": 7,
                         "connect": false,
@@ -457,6 +474,7 @@
           $(".hideLoading").show();
           $.getJSON( selectedValue, function( data ) {
                useData(data);
+               $('aside').addClass('aside-active');
                $(".hideLoading").fadeOut(333);
             });
 
@@ -465,9 +483,10 @@
 
             var selectedValue = $(this).val();
             $(".hideLoading").show();
-
+            $('aside').removeClass('aside-active');
             $.getJSON( selectedValue, function( data ) {
                useData(data);
+               $('aside').addClass('aside-active');
                $(".hideLoading").fadeOut(333);
 
             });

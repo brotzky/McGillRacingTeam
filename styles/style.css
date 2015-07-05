@@ -7,8 +7,8 @@
     }
     html, body {
       margin: 30px 0 0px;
-      padding: 0;
-      background-color: #fff;
+      padding: 0px 10px 0px 80px;
+      background-color: #f0f0f0f0;
       color: #4A4A4A;
       text-rendering: optimizeLegibility;
       -webkit-text-size-adjust: 100%;
@@ -20,12 +20,14 @@
     }
     h2 {
       text-align: center;
-      margin: 35px 0 0px;
+      margin: 30px 0 0px;
       font-size: 2rem;
+      padding-top: 70px;
+      margin-top: -70px;
     }
     .absolute-center {
       position: absolute;
-      top: 40%;
+      top: 45%;
       -ms-transform: translateY(-50%);
       -webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);
@@ -39,11 +41,12 @@
     .login-container {
       width: 400px;
       height: auto;
-      padding: 20px 30px 40px;
+      padding: 20px 30px 30px;
       text-align: center;
-      border: 1px solid rgba(0,0,0,0.2);
-      border-radius: 3px;
-      box-shadow: 0px 2px 6px rgba(0,0,0,0.08);
+      border: none;
+      border-radius: 2px;
+      background-color: #fff;
+      box-shadow: 0px 2px 7px rgba(0,0,0,0.16);
       -webkit-transition: height 300ms ease;
       -moz-transition: height 300ms ease;
       -ms-transition: height 300ms ease;
@@ -53,19 +56,24 @@
     .racing-logo {
       margin-bottom: 25px;
     }
+    .nav-logo img {
+      float: left;
+      height: 41px;
+      margin-left: 23px;
+    }
     .userName,
     .userPass {
       display: block;
       width: 100%;
       height: 42px;
-      padding: 3px 15px;
-      margin: 10px 0px 0px;
-      border: 1px solid rgba(0,0,0,0.2);
+      padding: 3px 5px;
+      margin: 12px 0px 0px;
+      border: none;
+      border-bottom: 1px solid#4e4e4e;
       font-size: 1rem;
     }
-    .userName::-webkit-input-placeholder,
-    .userPass::-webkit-input-placeholder{
-      color: rgba(0,0,0,0.6);
+    .userName:focus .userName::-webkit-input-placeholder {
+      right: 100px;
     }
 
     .userName:focus,
@@ -74,23 +82,26 @@
       outline: none;
     }
     .loginButton {
-      width: 100%;
+      width: 100px;
       height: 42px;
-      margin-top: 10px;
+      margin: 20px auto 0px;
       border: none;
-      background-color: #323a45;
-      color: #f9f9f9;
+      background-color: #fff;
+      color: #4e4e4e;
       display: block;
       font-size: 1.1em;
       cursor: pointer;
-      -webkit-transition: background-color 300ms ease;
-      -moz-transition: background-color 300ms ease;
-      -ms-transition: background-color 300ms ease;
-      -o-transition: background-color 300ms ease;
-      transition: background-color 300ms ease;
+      -webkit-transition: color 300ms ease;
+      -moz-transition: color 300ms ease;
+      -ms-transition: color 300ms ease;
+      -o-transition: color 300ms ease;
+      transition: color 300ms ease;
     }
     .loginButton:hover {
-      background-color: #1D2228;
+      color: #990000;
+    }
+    .loginButton:hover svg{
+      fill: #990000;
     }
     .alignLogin {
       padding-right: 18px;
@@ -109,16 +120,21 @@
       border-radius: 3px;
     }
     .invalidLogin {
-      border: 1px solid #D00000;
+      border-bottom: 2px solid #D00000;
     }
     .loginIcon {
       display: inline-block;
-      color: #eee;
-      fill: #eee;
+      color: #4e4e4e;
+      fill: #4e4e4e;
       height: 19px;
       width: 20px;
       position: absolute;
       margin: 2px;
+      -webkit-transition: fill 300ms ease;
+      -moz-transition: fill 300ms ease;
+      -ms-transition: fill 300ms ease;
+      -o-transition: fill 300ms ease;
+      transition: fill 300ms ease;
     }
     nav {
       position: fixed;
@@ -130,8 +146,8 @@
       background-color: #fff;
       border-top: 2px solid rgba(0,0,0,0.08);
       border-bottom: 2px solid rgba(0,0,0,0.08);
-/*      box-shadow: 0px 0px 12px rgba(0,0,0,0.1);
-*/    }
+      box-shadow: 0px 0px 12px rgba(0,0,0,0.088);
+    }
     nav ul {
       float: right;
       top: -15px;
@@ -184,7 +200,57 @@
       margin:0px 0px 20px 25px;
       font-weight: 600;
     }
-
+    aside::-webkit-scrollbar {
+      display: none;
+    }
+    aside {
+      position: fixed;
+      overflow-y:scroll;
+      overflow-x:hidden;
+      z-index: 1;
+      left: 0px;
+      top: 50px;
+      padding-bottom: 70px;
+      height: 100%;
+      width: 165px;
+      background-color: #fff;
+      border-right: 2px solid #eee;
+      -webkit-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);;
+      -moz-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);;
+      -ms-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);;
+      -o-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);;
+      transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);;
+      -webkit-transform: translateX(-100%);
+      -moz-transform: translateX(-100%);
+      -ms-transform: translateX(-100%);
+      -o-transform: translateX(-100%);
+      transform: translateX(-100%);
+    }
+    .aside-active {
+      -webkit-transform: translateX(-0%);
+      -moz-transform: translateX(-0%);
+      -ms-transform: translateX(-0%);
+      -o-transform: translateX(-0%);
+      transform: translateX(-0%);
+    }
+    aside ul {
+      padding: 0;
+      margin: 0;
+    }
+    aside ul li {
+        list-style: none;
+        border-bottom: 1px solid #EDEDED;
+    }
+    aside ul li a {
+      width: 100%;
+        padding: 8px 10px;
+        display: block;
+      color: #434343;
+      text-decoration: none;
+    }
+    aside ul li a:hover {
+      background-color: #fafafa;
+    }
     .circle {
       /* absolute position with 3d animation = render layer */
 
@@ -240,5 +306,7 @@
     }
 
 
+    div[id^='chart'] {
 
+    }
   </style>
