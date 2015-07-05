@@ -36,6 +36,7 @@
                     <input type="submit" value="Upload" class="uploadButton" name="submit">
                 </form>
               </li>
+              <input type="text" class="toBeUploaded" />
             </ul>
           </nav>
         </header>
@@ -50,6 +51,7 @@
           <div class='circle three'></div>
         </div>
 
+        <div class="uploadMessage"><p></p></div>
         <div id="amchartContainer"></div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -60,6 +62,49 @@
 
         <script type="text/javascript">
         AmCharts.ready(function(){
+
+            $('.uploadForm').submit(function( event ) {
+                var url = "csvUploader.php"; // the script where you handle the form input.
+                var data = new FormData(this);
+                console.log(data);
+                    $.ajax({
+                           type: "POST",
+                           url: url,
+                           data: data,
+                           processData: false,
+                           contentType: false,
+                           success: function(data)
+                           {
+                              console.log(data);
+                              $('.uploadMessage > p').text(data);
+                              $('.uploadMessage').addClass('uploadMessage-active').delay(4800).queue(function(next){
+                                    $(this).removeClass("uploadMessage-active");
+                                    next();
+                                });
+                           }
+                         });
+                    return false; // avoid to execute the actual submit of the form.
+          });
+
+          $('#fileToUpload').change(function(){
+
+              $('.toBeUploaded').val($(this).val().split('\\').pop());
+              $('.uploadButton').removeAttr('disabled').css('opacity','1');
+
+               if($('.toBeUploaded').val().length > 30) {
+
+                       $('.uploadButton').disabled = false;
+                        $('.uploadMessage > p').text('Sorry, file must be less than 30 characeters');
+                        $('.uploadButton').attr('disabled','disabled').css('opacity','0.4');
+
+                        $('.uploadMessage').addClass('uploadMessage-active').delay(5000).queue(function(next){
+                        $(this).removeClass("uploadMessage-active");
+                        next();
+                    });
+                  }
+
+            });
+
           $('nav').addClass('onload-reveal');
           var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
           // Log out button

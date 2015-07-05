@@ -22,6 +22,7 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
+
   if(document.forms.login.email.value === "") {
     document.forms.login.email.focus();
   }
@@ -64,7 +65,7 @@ $(document).ready(function(){
         $('.login-container').fadeOut('slow');
         setTimeout(function(){
           window.location = "data";
-        },800);
+        },333);
       }
     });
   });
