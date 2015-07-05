@@ -21,44 +21,52 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
 
-if(document.forms.login.email.value === "") {
-  document.forms.login.email.focus();
-}
-$('#login-form').keyup(function(event){
-  event.preventDefault()
-  var userEmail = $('.userName').val().toString();
-  var userPass = $('.userPass').val().toString();
-  var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
-  myDataRef.authWithPassword({
-    email    : userEmail,
-    password : userPass
-  }, function(error, authData) {
-    if (error) {
+$(document).ready(function(){
+  if(document.forms.login.email.value === "") {
+    document.forms.login.email.focus();
+  }
+  $('.login-container').addClass('login-container-active');
 
-    } else {
-      $('.login-container').fadeOut('fast');
-      setTimeout(function(){
-        window.location = "data";
-      }, 300);
+  $('#login-form').keyup(function(event){
+    event.preventDefault()
+    var userEmail = $('.userName').val().toString();
+    var userPass = $('.userPass').val().toString();
+    var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+    myDataRef.authWithPassword({
+      email    : userEmail,
+      password : userPass
+    }, function(error, authData) {
+      if (error) {
 
-    }
+      } else {
+        $('.login-container').fadeOut('fast');
+        setTimeout(function(){
+          window.location = "data";
+        }, 300);
+
+      }
+    });
   });
-});
-$('#login-form').on('submit',function(event){
-  event.preventDefault()
-  var userEmail = $('.userName').val().toString();
-  var userPass = $('.userPass').val().toString();
-  var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
-  myDataRef.authWithPassword({
-    email    : userEmail,
-    password : userPass
-  }, function(error, authData) {
-    if (error) {
-      $("input[class*='user']").addClass('invalidLogin');
-      $('.loginError').fadeIn();
-    } else {
-      window.location = "data";
-    }
+  $('#login-form').on('submit',function(event){
+    event.preventDefault()
+    var userEmail = $('.userName').val().toString();
+    var userPass = $('.userPass').val().toString();
+    var myDataRef = new Firebase('https://torrid-fire-7257.firebaseio.com');
+    myDataRef.authWithPassword({
+      email    : userEmail,
+      password : userPass
+    }, function(error, authData) {
+      if (error) {
+        $("input[class*='user']").addClass('invalidLogin');
+        $('.loginError').fadeIn();
+      } else {
+        $('.login-container').removeClass('login-container-active');
+        $('.login-container').fadeOut('slow');
+        setTimeout(function(){
+          window.location = "data";
+        },800);
+      }
+    });
   });
 });
 </script>

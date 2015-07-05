@@ -23,14 +23,14 @@
               <li><button class="logoutButton">Log Out</button></li>
               <li>
                 <select name="select" class="selectInput">
-                  <option value="inputdata/june152015.json" selected>June 15th 2015</option>
-                  <option value="inputdata/test.json">March 15th 2015</option>
+                  <option value="inputdata/july42015.json" selected>July 4th 2015</option>
+                  <option value="inputdata/june152015.json" >June 15th 2015</option>
                 </select>
               </li>
             </ul>
           </nav>
         </header>
-        <aside>
+        <aside class="aside-default">
             <ul id="sideList"></ul>
         </aside>
 
@@ -484,12 +484,17 @@
             var selectedValue = $(this).val();
             $(".hideLoading").show();
             $('aside').removeClass('aside-active');
-            $.getJSON( selectedValue, function( data ) {
-               useData(data);
-               $('aside').addClass('aside-active');
-               $(".hideLoading").fadeOut(333);
 
-            });
+            // Added in setTimout to give aside time to transform: translateX(0%)
+            setTimeout(function(){
+              $.getJSON( selectedValue, function( data ) {
+                 useData(data);
+                 $('aside').addClass('aside-active');
+                 $(".hideLoading").fadeOut(333);
+
+              });
+             }, 505);
+
           });
         });
       </script>
