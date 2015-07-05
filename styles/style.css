@@ -53,7 +53,7 @@
       transition: box-shadow 900ms ease;
     }
     .login-container-active {
-      box-shadow: 0px 2px 11px rgba(0,0,0,0.18);
+      box-shadow: 0px 3px 14px rgba(0,0,0,0.22);
     }
     .racing-logo {
       margin-bottom: 25px;
@@ -147,7 +147,6 @@
       top: 0;
       left: 0;
       background-color: #fff;
-      border-top: 2px solid rgba(0,0,0,0.08);
       border-bottom: 2px solid rgba(0,0,0,0.08);
       box-shadow: 0px 0px 12px rgba(0,0,0,0.088);
       webkit-transition: opacity 800ms ease;
@@ -158,14 +157,14 @@
     }
     nav ul {
       float: right;
-      top: -15px;
+      top: -16px;
       position: fixed;
       right: 0px;
     }
     nav ul li {
       float: right;
       list-style: none;
-      padding: 16px 15px;
+      padding: 17px 15px;
       border-left: 2px solid #eee;
     }
     .logoutButton {
@@ -253,7 +252,7 @@
       width: 100%;
         padding: 8px 10px;
         display: block;
-      color: #434343;
+      color: #696969;
       text-decoration: none;
     }
     aside ul li a:hover {
@@ -316,5 +315,28 @@
     }
     .onload-reveal {
       opacity: 1;
+    }
+
+    .uploadForm {
+        padding-top: 1px;
+    }
+    input[type="file"] {
+        display: none;
+    }
+    .custom-file-upload {
+        display: inline-block;
+        cursor: pointer;
+        padding: 0px 5px;
+        font-size: 1rem;
+        color: #4e4e4e;
+    }
+    .uploadButton {
+      cursor: pointer;
+      border: none;
+      padding: 0px 11px;
+      background-color: #fff;
+      font-size: 1rem;
+      color: #4e4e4e;
+      border-left: 1px solid #eee;
     }
   </style>

@@ -27,6 +27,15 @@
                   <option value="inputdata/june152015.json" >June 15th 2015</option>
                 </select>
               </li>
+              <li>
+                <form class="uploadForm" action="csvUploader.php" method="post" enctype="multipart/form-data">
+                    <label for="fileToUpload" class="custom-file-upload">
+                        Select Data
+                    </label>
+                    <input type="file" name="fileToUpload" id="fileToUpload" placeholder="Upload Data">
+                    <input type="submit" value="Upload" class="uploadButton" name="submit">
+                </form>
+              </li>
             </ul>
           </nav>
         </header>
