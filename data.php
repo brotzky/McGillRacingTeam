@@ -190,11 +190,15 @@
           var holderArr = [];
           var keyHolderArr = [];
 
-
           for(prop in originalJSON) {
+
             for(secondProp in originalJSON[prop]) {
                 holderArr.push(originalJSON[prop][secondProp]);
             }
+          }
+
+          for(nextProp in originalJSON) {
+            keyHolderArr.push(Object.keys(originalJSON[nextProp]));
           }
 
           // Creating dynamic variables to fill
@@ -364,7 +368,6 @@
               tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[31].push(tmp);
 
-
           }
 
             var prettyColors = [
@@ -424,19 +427,15 @@
                 temp.id = 'chartdiv'+[i];
                 temp.style.height = "450px";
 
-
                 // Aside navigation builder
                 var amChartList = document.createElement("li");
                 var amChartAnchor = document.createElement('a');
-
 
                 amChartAnchor.href = '#' + keyHolderArr[0][i+1];
                 amChartAnchor.innerHTML = keyHolderArr[0][i+1];
                 amChartList.appendChild(amChartAnchor);
 
-
                 amChartList.innerHTML = "<a href='#"+keyHolderArr[0][i+1]+"'>" + keyHolderArr[0][i+1] + " </a>";
-
 
                 amChartContainer.appendChild(header);
                 amChartContainer.appendChild(temp);
