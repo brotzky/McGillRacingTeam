@@ -323,6 +323,14 @@
     input[type="file"] {
         display: none;
     }
+    /* Change autofill color to white */
+    input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0px 1000px white inset;
+    }
+    input:-webkit-autofill:focus {
+        -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset;
+        -webkit-text-fill-color: #434343;
+    }  
     .custom-file-upload {
         display: inline-block;
         cursor: pointer;
