@@ -24,22 +24,26 @@
               <li>
                 <select name="select" class="selectInput">
                   <?php
-                         foreach(glob(dirname(__FILE__) . '/inputdata/*') as $filename){
-                         $filename = basename($filename);
-                         $filenameNoExt = basename($filename, ".json");
-                         $filenameNoSpace =  str_replace('_', ' ', $filenameNoExt);
-                         echo "<option value='/mrt/inputdata/" . $filename . "'>" . $filenameNoSpace . "</option>";
-                      }
-                      ?>
+                    $files = glob(dirname(__FILE__) . '/inputdata/*.json');
+                    usort($files, function($a, $b) {
+                        return filemtime($a) < filemtime($b);
+                    });
+                    foreach($files as $file){
+                      $filename = substr($file, strrpos($file, '/') + 1);
+                      $filenameNoExt = basename($filename, ".json");
+                     $filenameNoSpace =  str_replace('_', ' ', $filenameNoExt);
+                      echo "<option value='/mrt/inputdata/" . $filename . "'>" . $filenameNoSpace . "</option>";
+                    }
+                  ?>
                 </select>
               </li>
               <li>
                 <form class="uploadForm" action="csvUploader.php" method="post" enctype="multipart/form-data">
                     <label for="fileToUpload" class="custom-file-upload">
-                        Select Data
+                        Upload Data
                     </label>
                     <input type="file" name="fileToUpload" id="fileToUpload" placeholder="Upload Data">
-                    <input type="submit" value="Upload" class="uploadButton" name="submit">
+                    <input type="submit" value="Confirm" class="uploadButton" name="submit" disabled>
                 </form>
               </li>
               <input type="text" class="toBeUploaded" />
@@ -184,15 +188,17 @@
              var numProperties = (count(originalJSON));
 
           var holderArr = [];
+          var keyHolderArr = [];
+
 
           for(prop in originalJSON) {
             for(secondProp in originalJSON[prop]) {
                 holderArr.push(originalJSON[prop][secondProp]);
             }
           }
+
           // Creating dynamic variables to fill
           var makers = []
-
           console.log("orignalJSON.length: " + originalJSON.length + " | numProperties: " + numProperties);
           for (var i = 0; i < (numProperties*2); i++) {
             makers[i] = [];
@@ -201,248 +207,165 @@
           // Build all the objects to give to amcharts
           for (var i = 0; i < holderArr.length; i += numProperties) {
 
+            var timeOfDay = holderArr[i].toHHMMSS();
 
-              var lapTime = holderArr[i+1];
-              var timeOfDay = holderArr[i].toHHMMSS();
-              tmp = {
-                  'lapTime': lapTime,
-                  'lapTimeOfDay': timeOfDay
-              };
+              tmp = {};
+              tmp[keyHolderArr[0][1]] = holderArr[i+1];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[0].push(tmp);
 
-              var timeOfDay = holderArr[i].toHHMMSS();
-              var lap_v_max = holderArr[i+2];
-              tmp2 = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_v_max': lap_v_max
-              };
-              makers[1].push(tmp2);
+              tmp = {};
+              tmp[keyHolderArr[0][2]] = holderArr[i+2];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[1].push(tmp);
 
-
-              var lap_ect_max = holderArr[i+3];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_ect_max': lap_ect_max
-              };
+              tmp = {};
+              tmp[keyHolderArr[0][3]] = holderArr[i+3];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[2].push(tmp);
 
-
-              var lap_ect_mean = holderArr[i+4];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_ect_mean': lap_ect_mean
-              };
+             tmp = {};
+             tmp[keyHolderArr[0][4]] = holderArr[i+4];
+             tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[3].push(tmp);
-
-
-              var lap_oilt_max = holderArr[i+5];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_oilt_max': lap_oilt_max
-              };
+             tmp = {};
+             tmp[keyHolderArr[0][5]] = holderArr[i+5];
+             tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[4].push(tmp);
 
-
-              var lap_oilt_mean = holderArr[i+6];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_oilt_mean': lap_oilt_mean
-              };
+              tmp = {};
+             tmp[keyHolderArr[0][6]] = holderArr[i+6];
+             tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[5].push(tmp);
 
-
-              var lap_iat_max = holderArr[i+7];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_iat_max': lap_iat_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][7]] = holderArr[i+7];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[6].push(tmp);
 
-
-              var lap_iat_mean = holderArr[i+8];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_iat_mean': lap_iat_mean
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][8]] = holderArr[i+8];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[7].push(tmp);
 
-
-              var lap_rhf_max = holderArr[i+9];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rhf_max': lap_rhf_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][9]] = holderArr[i+9];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[8].push(tmp);
 
-
-              var lap_rhr_max = holderArr[i+10];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rhr_max': lap_rhr_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][10]] = holderArr[i+10];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[9].push(tmp);
 
-
-              var lap_rhf_mean = holderArr[i+11];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rhf_mean': lap_rhf_mean
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][11]] = holderArr[i+11];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[10].push(tmp);
 
-
-              var lap_rhr_mean = holderArr[i+12];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rhr_mean': lap_rhr_mean
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][12]] = holderArr[i+12];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[11].push(tmp);
 
-
-              var lap_pbrakef_max = holderArr[i+13];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_pbrakef_max': lap_pbrakef_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][13]] = holderArr[i+13];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[12].push(tmp);
 
-
-              var lap_pbraker_max = holderArr[i+14];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_pbraker_max': lap_pbraker_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][14]] = holderArr[i+14];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[13].push(tmp);
 
-
-              var lap_brakebias_mean = holderArr[i+15];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_brakebias_mean': lap_brakebias_mean
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][15]] = holderArr[i+15];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[14].push(tmp);
 
-
-              var lap_rollf_max = holderArr[i+16];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rollf_max': lap_rollf_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][16]] = holderArr[i+16];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[15].push(tmp);
 
-
-              var lap_rollr_max = holderArr[i+17];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rollr_max': lap_rollr_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][17]] = holderArr[i+17];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[16].push(tmp);
 
-
-              var lap_rpm_max = holderArr[i+18];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_rpm_max': lap_rpm_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][18]] = holderArr[i+18];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[17].push(tmp);
 
-
-              var lap_exh_t_max = holderArr[i+19];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_exh_t_max': lap_exh_t_max
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][19]] = holderArr[i+19];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[18].push(tmp);
 
-
-              var lap_oilp_mean = holderArr[i+20];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_oilp_mean': lap_oilp_mean
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][20]] = holderArr[i+20];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[19].push(tmp);
 
-
-              var lap_oilp_min = holderArr[i+21];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_oilp_min': lap_oilp_min
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][21]] = holderArr[i+21];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[20].push(tmp);
 
-
-              var lap_fuelp_min = holderArr[i+22];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_fuelp_min': lap_fuelp_min
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][22]] = holderArr[i+22];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[21].push(tmp);
 
-
-              var lap_battv_mean = holderArr[i+23];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'lap_battv_mean': lap_battv_mean
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][23]] = holderArr[i+23];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[22].push(tmp);
 
-
-               var CL_F = holderArr[i+24];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'CL_F': CL_F
-              };
+                tmp = {};
+               tmp[keyHolderArr[0][24]] = holderArr[i+24];
+               tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[23].push(tmp);
-
-              var CL_R = holderArr[i+25];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'CL_R': CL_R
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][25]] = holderArr[i+25];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[24].push(tmp);
-
-              var CL = holderArr[i+26];
-              tmp = {
-                  'lapTimeOfDay': timeOfDay,
-                  'CL': CL
-              };
+               tmp = {};
+              tmp[keyHolderArr[0][26]] = holderArr[i+26];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
               makers[25].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][25]] = holderArr[i+25];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[26].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][27]] = holderArr[i+27];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[26].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][28]] = holderArr[i+28];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[27].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][29]] = holderArr[i+29];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[28].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][30]] = holderArr[i+30];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[29].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][31]] = holderArr[i+31];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[30].push(tmp);
+              tmp = {};
+              tmp[keyHolderArr[0][32]] = holderArr[i+32];
+              tmp[keyHolderArr[0][0]] = holderArr[i].toHHMMSS();
+              makers[31].push(tmp);
+
+
           }
-
-
-
-            var graphNames = [
-                  "lapTimeOfDay",
-                  "lapTime",
-                  "lap_v_max",
-                  "lap_ect_max",
-                  "lap_ect_mean",
-                  "lap_oilt_max",
-                  "lap_oilt_mean",
-                  "lap_iat_max",
-                  "lap_iat_mean",
-                  "lap_rhf_max",
-                  "lap_rhr_max",
-                  "lap_rhf_mean",
-                  "lap_rhr_mean",
-                  "lap_pbrakef_max",
-                  "lap_pbraker_max",
-                  "lap_brakebias_mean",
-                  "lap_rollf_max",
-                  "lap_rollr_max",
-                  "lap_rpm_max",
-                  "lap_exh_t_max",
-                  "lap_oilp_mean",
-                  "lap_oilp_min",
-                  "lap_fuelp_min",
-                  "lap_battv_mean",
-                  "CL_R",
-                  "CL_F",
-                  "CL"
-                ]
-
-                // Stops from building unnecessary empty graphs
-                graphNames.length = numProperties;
 
             var prettyColors = [
                 "#ed5153",
@@ -470,6 +393,12 @@
                 "#1565C0",
                 "#4CAF50",
                 "#990000",
+                "#283593",
+                "#FF5722",
+                "#607D8B",
+                "#673AB7",
+                "#D32F2F",
+                "#880E4F",
                 "#283593"
             ]
 
@@ -477,7 +406,7 @@
 
             var sideList = document.getElementById('sideList');
                 // Loop to make the divs + charts
-              for (i = 0; i < graphNames.length-1; i++) {
+              for (i = 0; i < keyHolderArr[0].length-1; i++) {
 
                 // If not amChartContainer, make one to insert graphs into
                 if(!($('#amchartContainer').length)) {
@@ -487,10 +416,10 @@
                 }
 
                 header = document.createElement('h2');
-                header.id = graphNames[i+1];
+                header.id = keyHolderArr[0][i+1];
                 amChartContainer =  document.getElementById('amchartContainer');
 
-                header.innerHTML = graphNames[i+1];
+                header.innerHTML = keyHolderArr[0][i+1];
                 temp = document.createElement('div');
                 temp.id = 'chartdiv'+[i];
                 temp.style.height = "450px";
@@ -501,12 +430,12 @@
                 var amChartAnchor = document.createElement('a');
 
 
-                amChartAnchor.href = '#' + graphNames[i+1];
-                amChartAnchor.innerHTML = graphNames[i+1];
+                amChartAnchor.href = '#' + keyHolderArr[0][i+1];
+                amChartAnchor.innerHTML = keyHolderArr[0][i+1];
                 amChartList.appendChild(amChartAnchor);
 
 
-                amChartList.innerHTML = "<a href='#"+graphNames[i+1]+"'>" + graphNames[i+1]+ " </a>";
+                amChartList.innerHTML = "<a href='#"+keyHolderArr[0][i+1]+"'>" + keyHolderArr[0][i+1] + " </a>";
 
 
                 amChartContainer.appendChild(header);
@@ -531,13 +460,13 @@
                       "graphs": [{
                         "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
                         "bullet": "round",
-                        "bulletSize": 7,
+                        "bulletSize": 8,
                         "connect": false,
                         "gapPeriod": 200,
                         "lineColor": prettyColors[i],
                         "lineThickness": 2,
                         "negativeLineColor": "#487dac",
-                        "valueField": graphNames[i+1].toString()
+                        "valueField": keyHolderArr[0][i+1].toString()
                       }],
                       "chartCursor": {
                         "categoryBalloonDateFormat": "YYYY",

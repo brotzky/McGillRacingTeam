@@ -43,7 +43,7 @@ $(document).ready(function(){
         $('.login-container').fadeOut('fast');
         setTimeout(function(){
           window.location = "mrt/data";
-        }, 300);
+        }, 400);
 
       }
     });
@@ -65,7 +65,7 @@ $(document).ready(function(){
         $('.login-container').fadeOut('slow');
         setTimeout(function(){
           window.location = "mrt/data";
-        },333);
+        },444);
       }
     });
   });

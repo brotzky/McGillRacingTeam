@@ -333,6 +333,7 @@
     .uploadButton {
       cursor: pointer;
       border: none;
+      opacity: 0.4;
       padding: 0px 11px;
       background-color: #fff;
       font-size: 1rem;
