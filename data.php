@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>McGill FSAE Racing</title>
         <link rel="stylesheet" href="/mrt/styles/style.css" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
         <script type="text/javascript">
@@ -426,6 +427,13 @@
                 temp = document.createElement('div');
                 temp.id = 'chartdiv'+[i];
                 temp.style.height = "450px";
+                temp.style.backgroundColor = "#fff";
+                temp.style.borderRadius = "5px";
+                temp.style.margin ="10px 50px 50px"
+                temp.style.border = "1px solid #eee";
+                temp.style.borderBottom = "2px solid #eee";
+                temp.style.padding = "15px 5px";
+                temp.style.boxShadow = "0px 2px 2px rgba(0,0,0,0,0.26)";
 
                 // Aside navigation builder
                 var amChartList = document.createElement("li");
@@ -447,8 +455,8 @@
                       "type": "serial",
                       "theme": "dark",
                       "dataDateFormat": "HH:NN:SS",
-                      "marginRight": 25,
-                      "autoMarginOffset": 25,
+                      "marginRight": 50,
+                      "autoMarginOffset": 50,
                       "dataProvider": makers[i],
                       "balloon": {
                         "cornerRadius": 0
