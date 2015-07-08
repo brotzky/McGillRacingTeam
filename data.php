@@ -11,6 +11,7 @@
         }
         </style>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
         <script type="text/javascript">
@@ -92,7 +93,7 @@
 
         <div id="amchartContainer"></div>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
         <script src="/mrt/papaparse/papaparse.min.js"></script>
         <script src="/mrt/scrollscope/scroll-scope.min.js"></script>
         <script src="http://www.amcharts.com/lib/3/amcharts.js"></script>
@@ -115,7 +116,6 @@
               commentListItem.innerHTML = comment;
               commentList.append(commentListItem);
 
-              console.log(comment);
                 var url = "/mrt/writeToText.php"; // the script where you handle the form input.
                     $.ajax({
                            type: "POST",
@@ -123,7 +123,7 @@
                            data: comment,
                            success: function(data)
                            {
-                              console.log(data);
+
                            }
                          });
 
@@ -133,7 +133,7 @@
                 var url = "/mrt/csvUploader.php"; // the script where you handle the form input.
                 var data = new FormData(this);
                 var fileName = $("#fileToUpload").val().split('\\').pop().split('.').shift();
-                console.log(fileName);
+
                     $.ajax({
                            type: "POST",
                            url: url,
@@ -142,7 +142,7 @@
                            contentType: false,
                            success: function(data)
                            {
-                              console.log(data);
+
                               $('.uploadMessage > p').text(data);
                               $('.uploadMessage').addClass('uploadMessage-active').delay(4800).queue(function(next){
                                     $(this).removeClass("uploadMessage-active");
@@ -237,7 +237,6 @@
 
           // Creating dynamic variables to fill
           var makers = []
-          console.log("orignalJSON.length: " + originalJSON.length + " | numProperties: " + numProperties);
           for (var i = 0; i < (numProperties*2); i++) {
             makers[i] = [];
           }
@@ -443,6 +442,13 @@
 
             var sideList = document.getElementById('sideList');
                 // Loop to make the divs + charts
+
+              var chartConfig = [];
+              for(var i = 0; i<keyHolderArr[0].length-1; i++) {
+                  chartConfig[i] = [];
+              }
+
+              charts = [];
               for (i = 0; i < keyHolderArr[0].length-1; i++) {
 
                 // If not amChartContainer, make one to insert graphs into
@@ -482,7 +488,7 @@
 
                 var divID = temp.id.toString();
 
-                    var chart = AmCharts.makeChart(divID, {
+                  chartConfig[i] = {
                       "type": "serial",
                       "theme": "dark",
                       "dataDateFormat": "HH:NN:SS",
@@ -523,18 +529,65 @@
                       "export": {
                         "enabled": true
                       }
-                    });
+                    };
+                    // Adding all the made charts to an Array
+                    // This is to sync al the zooming of the graphs.
+                     charts.push(AmCharts.makeChart(divID, chartConfig[i]));
+                }
+
+                for (var x in charts) {
+                    charts[x].addListener("zoomed", syncZoom);
+                    charts[x].addListener("init", addCursorListeners);
+                }
+
+                function addCursorListeners(event) {
+                    event.chart.chartCursor.addListener("changed", handleCursorChange);
+                    event.chart.chartCursor.addListener("onHideCursor", handleHideCursor);
+                }
+
+                function syncZoom(event) {
+                    for (x in charts) {
+                        if (charts[x].ignoreZoom) {
+                            charts[x].ignoreZoom = false;
+                        }
+                        if (event.chart != charts[x]) {
+                            charts[x].ignoreZoom = true;
+                            charts[x].zoomToDates(event.startDate, event.endDate);
+                        }
+                    }
+                }
+                function handleCursorChange(event) {
+                    for (var x in charts) {
+                        if (event.chart != charts[x]) {
+                            if (event.position) {
+                                charts[x].chartCursor.isZooming(event.target.zooming);
+                                charts[x].chartCursor.selectionPosX = event.target.selectionPosX;
+                                charts[x].chartCursor.forceShow = true;
+                                charts[x].chartCursor.setPosition(event.position, false, event.target.index);
+                            }
+                        }
+                    }
+                }
+
+                function handleHideCursor() {
+                    for (var x in charts) {
+                        if (charts[x].chartCursor.hideCursor) {
+                            charts[x].chartCursor.forceShow = false;
+                            charts[x].chartCursor.hideCursor(false);
+                        }
+                    }
                 }
               }
 
+
           // Default view of Data selection
           var selectedValue = $('.selectInput > option:first-child').val();
-          console.log(selectedValue);
+
           var last = selectedValue.substr(selectedValue.lastIndexOf('/') + 1);
-          console.log(last);
+
           var splitValue = last.split('.');
           var popValue = splitValue.shift();
-          console.log(popValue + ".txt");
+
 
           $('.moreButton').click(function(){
             $('.moreInfo').toggleClass('showMoreInfo');
@@ -552,7 +605,7 @@
                       {
                           var allText = rawFile.responseText;
                           var asideComments = document.getElementById('aside-comments');
-                          console.log(allText);
+
                           //asideComments.text(allText);
                       }
                   }
