@@ -7,10 +7,10 @@
         <link rel="stylesheet" href="/mrt/styles/style.css" type="text/css">
         <style type="text/css">
         html, body {
-            background-color: #fcfcfc;
+            background-color: #f1f1f1;
         }
         </style>
-        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
         <script type="text/javascript">
@@ -27,6 +27,7 @@
             <div class="nav-logo"><img src="/mrt/img/mcgill-fsae-logo-car-only.png"></div>
             <ul>
               <li><button class="logoutButton">Log Out</button></li>
+              <li><a class="moreButton">More</a></li>
               <li>
                 <select name="select" class="selectInput">
                   <?php
@@ -60,7 +61,7 @@
             <ul id="sideList"></ul>
         </aside>
 
-        <aside style="border: 1px solid red; color: #000;" id="aside-comments">
+        <!-- <aside style="border: 1px solid red; color: #000;" id="aside-comments">
           <form action="" method="POST" class="postComments">
               <input name="addComment" type="text" class="addComment"/>
               <input type="submit" name="submit" value="Save Data">
@@ -70,7 +71,7 @@
 
             </ul>
 
-        </aside>
+        </aside> -->
 
         <div class='loader hideLoading'>
           <div class="loadingMessage">Fetching Data</div>
@@ -80,6 +81,15 @@
         </div>
 
         <div class="uploadMessage"><p></p></div>
+
+        <div class="moreInfo">
+          <div class="moreInfo-container">
+            <div><h2>Instructions</h2></div>
+            <div><h2>About McGill Racing</h2></div>
+            <div><h2>Credits</h2></div>
+          </div>
+        </div>
+
         <div id="amchartContainer"></div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -451,12 +461,10 @@
                 temp.id = 'chartdiv'+[i];
                 temp.style.height = "450px";
                 temp.style.backgroundColor = "#fff";
-                temp.style.borderRadius = "5px";
-                temp.style.margin ="10px 50px 50px"
-                temp.style.border = "1px solid #eee";
-                temp.style.borderBottom = "2px solid #eee";
+                temp.style.borderRadius = "2px";
+                temp.style.margin ="10px 50px 50px";
                 temp.style.padding = "15px 5px";
-                temp.style.boxShadow = "0px 2px 2px rgba(0,0,0,0,0.26)";
+                temp.style.boxShadow = "0 1px 2px rgba(0,0,0,.1)";
 
                 // Aside navigation builder
                 var amChartList = document.createElement("li");
@@ -527,6 +535,10 @@
           var splitValue = last.split('.');
           var popValue = splitValue.shift();
           console.log(popValue + ".txt");
+
+          $('.moreButton').click(function(){
+            $('.moreInfo').toggleClass('showMoreInfo');
+          });
 
           function readTextFile(file)
           {
