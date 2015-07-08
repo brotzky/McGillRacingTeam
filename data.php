@@ -5,7 +5,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>McGill FSAE Racing</title>
         <link rel="stylesheet" href="/mrt/styles/style.css" type="text/css">
-        <link href='http://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+        <style type="text/css">
+        html, body {
+            background-color: #fcfcfc;
+        }
+        </style>
+        <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
         <script src="https://cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
         <script type="text/javascript">
@@ -16,7 +21,7 @@
           }
         </script>
     </head>
-    <body>
+    <body class="inApp">
         <header>
           <nav>
             <div class="nav-logo"><img src="/mrt/img/mcgill-fsae-logo-car-only.png"></div>
@@ -47,12 +52,24 @@
                     <input type="submit" value="Confirm" class="uploadButton" name="submit" disabled>
                 </form>
               </li>
-              <input type="text" class="toBeUploaded" />
+              <input type="text" class="toBeUploaded" readonly="readonly" />
             </ul>
           </nav>
         </header>
         <aside class="aside-default" data-scroll-scope>
             <ul id="sideList"></ul>
+        </aside>
+
+        <aside style="border: 1px solid red; color: #000;" id="aside-comments">
+          <form action="" method="POST" class="postComments">
+              <input name="addComment" type="text" class="addComment"/>
+              <input type="submit" name="submit" value="Save Data">
+          </form>
+
+          <ul class="commentList">
+
+            </ul>
+
         </aside>
 
         <div class='loader hideLoading'>
@@ -79,7 +96,30 @@
 
         AmCharts.ready(function(){
 
+            $('.postComments').submit(function(event) {
+              event.preventDefault();
+
+                var commentList = $('.commentList');
+              var comment = $('.addComment').val();
+              var commentListItem = document.createElement('li');
+              commentListItem.innerHTML = comment;
+              commentList.append(commentListItem);
+
+              console.log(comment);
+                var url = "/mrt/writeToText.php"; // the script where you handle the form input.
+                    $.ajax({
+                           type: "POST",
+                           url: url,
+                           data: comment,
+                           success: function(data)
+                           {
+                              console.log(data);
+                           }
+                         });
+
+            });
             $('.uploadForm').submit(function( event ) {
+                event.preventDefault();
                 var url = "/mrt/csvUploader.php"; // the script where you handle the form input.
                 var data = new FormData(this);
                 var fileName = $("#fileToUpload").val().split('\\').pop().split('.').shift();
@@ -108,23 +148,6 @@
                               }
                            }
                          });
-
-
-                    // var dir = "uploadedCSV/";
-                    // var fileextension = ".csv";
-                    // $.ajax({
-                    //     //This will retrieve the contents of the folder if the folder is configured as 'browsable'
-                    //     type: 'GET',
-                    //     url: dir,
-                    //     success: function (data) {
-                    //         //Lsit all png file names in the page
-                    //         console.log('test');
-                    //         $(data).find("a:contains(" + fileextension + ")").each(function () {
-                    //             var filename = this.href.replace(window.location.host, "").replace("http:///", "");
-                    //             $("body").append($("<div" + dir + filename + "></div>"));
-                    //         });
-                    //     }
-                    // });
 
                     return false; // avoid to execute the actual submit of the form.
           });
@@ -376,7 +399,7 @@
                 "#323a45",
                 "#3F51B5",
                 "#009688",
-                "#CDDC39",
+                "#BF360C",
                 "#4CAF50",
                 "#FF9800",
                 "#FF5722",
@@ -467,11 +490,11 @@
                       "graphs": [{
                         "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
                         "bullet": "round",
-                        "bulletSize": 8,
+                        "bulletSize": 6,
                         "connect": false,
                         "gapPeriod": 200,
                         "lineColor": prettyColors[i],
-                        "lineThickness": 2,
+                        "lineThickness": 1,
                         "negativeLineColor": "#487dac",
                         "valueField": keyHolderArr[0][i+1].toString()
                       }],
@@ -498,6 +521,35 @@
 
           // Default view of Data selection
           var selectedValue = $('.selectInput > option:first-child').val();
+          console.log(selectedValue);
+          var last = selectedValue.substr(selectedValue.lastIndexOf('/') + 1);
+          console.log(last);
+          var splitValue = last.split('.');
+          var popValue = splitValue.shift();
+          console.log(popValue + ".txt");
+
+          function readTextFile(file)
+          {
+              var rawFile = new XMLHttpRequest();
+              rawFile.open("GET", file, false);
+              rawFile.onreadystatechange = function ()
+              {
+                  if(rawFile.readyState === 4)
+                  {
+                      if(rawFile.status === 200 || rawFile.status == 0)
+                      {
+                          var allText = rawFile.responseText;
+                          var asideComments = document.getElementById('aside-comments');
+                          console.log(allText);
+                          //asideComments.text(allText);
+                      }
+                  }
+              }
+              rawFile.send(null);
+          }
+          readTextFile('/mrt/inputcomments/testfile.txt');
+
+
           $(".hideLoading").show();
           $.getJSON( selectedValue, function( data ) {
                useData(data);
