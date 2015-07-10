@@ -16,7 +16,6 @@
       -moz-osx-font-smoothing: grayscale;
       height: 100%;
       font-family: "Roboto","Helvetica Neue", Helvetica, sans-serif;
-      word-spacing: 0.1em;
     }
     h2 {
       text-align: center;
@@ -80,7 +79,9 @@
 
     .userName:focus,
     .userPass:focus,
-    .loginButton:focus {
+    .loginButton:focus,
+    .submitComment:focus,
+    .addComment:focus {
       outline: none;
     }
     .loginButton {
@@ -227,7 +228,7 @@
       height: 100%;
       width: 165px;
       border-right: 1px solid #ededed;
-
+      background-color: #fff;
       /*box-shadow:  3px 0px 12px rgba(0,0,0,0.11);*/
       -webkit-transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
       -moz-transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -241,17 +242,16 @@
       transform: translate3d(-100%, 0px, 0px);
     }
     .aside-active {
-      -webkit-transform: translate3d(0%, 0px, 0px);
-      -moz-transform: translate3d(0%, 0px, 0px);
-      -ms-transform: translate3d(0%, 0px, 0px);
-      -o-transform: translate3d(0%, 0px, 0px);
-      transform: translate3d(0%, 0px, 0px);
+      -webkit-transform: translate3d(0%, 0px, 0px) !important;
+      -moz-transform: translate3d(0%, 0px, 0px) !important;
+      -ms-transform: translate3d(0%, 0px, 0px) !important;
+      -o-transform: translate3d(0%, 0px, 0px) !important;
+      transform: translate3d(0%, 0px, 0px) !important;
     }
     aside ul {
       padding: 0;
       margin: 0;
       background-color: #fff;
-
     }
     aside ul li {
         list-style: none;
@@ -479,5 +479,96 @@
       width: 100%;
       max-width: 1280px;
       border: 1px solid #eee;
+    }
+    .aside-comments {
+        position: fixed;
+        z-index: 1;
+        pointer-events: none;
+        background-color: rgba(255,255,255,0.44);
+        border-left: 1px solid #eee;
+        height: 100%;
+        width: 326px;
+        right: 0px;
+        top: 55px;
+        box-shadow: -1px 0px 5px rgba(0,0,0,0.11);
+        -webkit-transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -moz-transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -ms-transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -o-transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: transform 500ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -webkit-transform: translate3d(100%, 0px, 0px);
+        -moz-transform: translate3d(100%, 0px, 0px);
+        -ms-transform: translate3d(100%, 0px, 0px);
+        -o-transform: translate3d(100%, 0px, 0px);
+        transform: translate3d(100%, 0px, 0px);
+    }
+    .aside-comments ul {
+        background-color: rgba(255,255,255,0.7);
+    }
+    .aside-comments li {
+        width: 100%;
+        padding: 10px 12px;
+        display: block;
+        color: #4e4e4e;
+        background-color: rgba(255,255,255,0.75);
+        text-decoration: none;
+        font-size: 14px;
+        list-style: lower-roman;
+    }
+    .postComments {
+        position: absolute;
+        z-index: 4;
+        right: 0px;
+        bottom: 60px;
+    }
+    .addComment {
+        width: 100%;
+        background-color: rgba(255,255,255,0.88);
+        border: 1px solid #A1A1A1;
+        height: 60px;
+        margin: 1px 14.5px 5px;
+        padding: 3px 5px;
+        width: 294px;
+        font-size: 0.8rem;
+         resize:none;
+         box-shadow:  inset 1px 1px 4px rgba(0,0,0,0.12);
+    }
+    .submitComment {
+        font-size: 1rem;
+        width: 100%;
+        border-color: #C62828;
+        border: none;
+        background-color:  #C62828;
+        color: #fff;
+        padding: 10px 10px;
+        margin: 1px 14.5px 5px;
+        width: 294px;
+        cursor: pointer;
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        transition: all 300ms ease;
+    }
+    .submitComment:hover {
+        border-color: #E53935;
+        background-color: #E53935;
+    }
+    .toggleComments {
+        cursor: pointer;
+        display: block;
+    }
+    .toggleComments .notebook-icon {
+        width: 52px;
+        padding: 9px 6px 11px 16px;
+        border-left: 1px solid #eee;
+        -webkit-transition: all 300ms ease;
+        -moz-transition: all 300ms ease;
+        -ms-transition: all 300ms ease;
+        -o-transition: all 300ms ease;
+        transition: all 300ms ease;
+    }
+    .border-left {
+        border-left: 1px solid #eee;
     }
   </style>
