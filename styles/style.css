@@ -6,7 +6,7 @@
         font-smoothing:               antialiased;
     }
     html, body {
-      margin: 40px 0 0px;
+      margin: 50px 0 0px;
       padding: 0px 10px 0px 88px;
       background-color: #fff;
       color: #4A4A4A;
@@ -18,11 +18,19 @@
       font-family: "Roboto","Helvetica Neue", Helvetica, sans-serif;
     }
     h2 {
+        position: relative;
       text-align: center;
-      margin: 50px 0 0px;
+      margin: 00px 43px 0px;
+      padding: 16px 0px;
       font-size: 2rem;
-      padding-top: 70px;
-      margin-top: -70px;
+      background-color: #fafafa;
+      border-top-right-radius: 2px;
+      border-top-left-radius: 2px;
+      box-shadow:  0 0px 3px rgba(0,0,0,.1);
+    }
+    h2 span {
+        position: absolute;
+        top: -95px;
     }
     .absolute-center {
       position: absolute;
@@ -57,10 +65,14 @@
     .racing-logo {
       margin-bottom: 25px;
     }
-    .nav-logo img {
+    .racing-logo svg {
+        width: 100%;
+    }
+    .nav-logo svg {
       float: left;
       height: 43px;
       margin: 5px 0px 0px 23px;
+      fill: #B4000C;
     }
     .userName,
     .userPass {
@@ -142,7 +154,7 @@
     nav {
       opacity: 0;
       position: fixed;
-      z-index: 2;
+      z-index: 3;
       height: 55px;
       width: 100%;
       top: 0;
@@ -174,18 +186,17 @@
       color: #4e4e4e;
       display: block;
       background-color: transparent;
-      font-size: 1em;
+      font-size: 17px;
       cursor: pointer;
-      font-weight: 300;
       -webkit-transition: background-color 300ms ease;
       -moz-transition: background-color 300ms ease;
       -ms-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
       transition: background-color 300ms ease;
-      padding: 18px 17px;
+      padding: 18px 14px;
       border-left: 1px solid #eee;
       margin: 0px 6px;
-
+      font-family: "Roboto","Helvetica Neue", Helvetica, sans-serif;
     }
     .selectInput {
       float: right;
@@ -198,7 +209,7 @@
       border: 0px solid #fff;
       border-radius: 43px;
       margin: 17px 10px;
-
+      font-family: "Roboto","Helvetica Neue", Helvetica, sans-serif;
     }
     .selectInput:hover {
       cursor: pointer;
@@ -240,13 +251,6 @@
       -ms-transform: translate3d(-100%, 0px, 0px);
       -o-transform: translate3d(-100%, 0px, 0px);
       transform: translate3d(-100%, 0px, 0px);
-    }
-    .aside-active {
-      -webkit-transform: translate3d(0%, 0px, 0px) !important;
-      -moz-transform: translate3d(0%, 0px, 0px) !important;
-      -ms-transform: translate3d(0%, 0px, 0px) !important;
-      -o-transform: translate3d(0%, 0px, 0px) !important;
-      transform: translate3d(0%, 0px, 0px) !important;
     }
     aside ul {
       padding: 0;
@@ -341,15 +345,17 @@
         -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset;
         -webkit-text-fill-color: #434343;
     }
+    .confirm-upload {
+        position: relative;
+    }
     .custom-file-upload {
         display: inline-block;
+        float: right;
         cursor: pointer;
-        padding: 0px 5px;
-        font-size: 1rem;
+        font-size: 17px;
         color: #4e4e4e;
-        padding: 10px 0px;
-       /* border: 1px solid #BEBEBE;*/
-        margin: 6px;
+        padding: 15px 17px;
+        margin: 0px;
     }
     .custom-file-upload::before {
       content: url('../img/upload-arrow.svg');
@@ -358,31 +364,67 @@
       float: left;
       margin: -4px 5px 0px 0px;
     }
+    .confirmUpload {
+        position:   relative;
+        z-index: 0;
+        -webkit-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -moz-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -ms-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -o-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -webkit-transform: translate3d(0px, -110%, 0px);
+        -moz-transform: translate3d(0px, -110%, 0px);
+        -ms-transform: translate3d(0px, -110%, 0px);
+        -o-transform: translate3d(0px, -110%, 0px);
+        transform: translate3d(0px, -110%, 0px);
+    }
+    .confirmUpload-active {
+        -webkit-transform: translate3d(0px, 2%, 0px);
+        -moz-transform: translate3d(0px, 2%, 0px);
+        -ms-transform: translate3d(0px, 2%, 0px);
+        -o-transform: translate3d(0px, 2%, 0px);
+        transform: translate3d(0px, 2%, 0px);
+    }
     .uploadButton {
       cursor: pointer;
       border: none;
-      opacity: 0.4;
       padding: 0px 11px;
-      background-color: transparent;
+      background-color: #fafafa;
       font-size: 1rem;
       color: #4e4e4e;
       border-left: 0px solid rgba(255,255,255,0.1);
       outline: none;
-      padding: 10px 4px;
-      border-radius: 43px;
-      margin: 6px;
+      padding: 16px 18px;
+      margin: 0px;
+      margin-top: 1px;
+      box-shadow: -1px 2px 6px rgba(0,0,0,0.11);
+      position: relative;
+      z-index: 1;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      -webkit-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+    }
+    .uploadButton:hover {
+        background-color: #F7F5F5;
     }
 
     .toBeUploaded {
-      text-align: right;
+      text-align: left;
       border: none;
       height: 48px;
       font-size: 0.8rem;
-      padding: 25px 25px;
+      padding: 25px 19px;
       margin-top: 1px;
-      background-color: transparent;
       color: #4e4e4e;
-
+      float: right;
+      position: fixed;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.11);
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     .uploadMessage {
       position: fixed;
@@ -428,20 +470,21 @@
       color: #4e4e4e;
       display: block;
       background-color: transparent;
-      font-size: 1.1rem;
+      font-size: 17px;
       cursor: pointer;
       -webkit-transition: background-color 300ms ease;
       -moz-transition: background-color 300ms ease;
       -ms-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
       transition: background-color 300ms ease;
-      padding: 18px 8px 18px 20px;
+      padding: 18px 2px 18px 16px;
       border-left: 1px solid #eee;
       margin: 0px 6px;
     }
 
     .moreInfo {
       position: fixed;
+      overflow-y: auto;
       z-index: 3;
       width: 100%;
       height: 100%;
@@ -476,10 +519,38 @@
     }
     .moreInfo-container {
       margin: 25px auto;
-      width: 100%;
-      max-width: 1280px;
-      border: 1px solid #eee;
+      width: 95%;
+      max-width: 1024px;
     }
+    .moreInfo-2--3 {
+        float: left;
+        width: 66%;
+    }
+    .moreInfo-1--3 {
+        float: left;
+        width: 33%;
+    }
+    .moreInfo-container img {
+        float: right;
+        width: 325px;
+    }
+    .moreInfo-container h3 {
+            margin: 20px 0px 8px 0px;
+    }
+    .moreInfo-container ol {
+        margin: 5px 0px;
+    }
+    .moreInfo-container ul {
+        margin: 5px 0px;
+    }
+    .moreInfo-container a {
+        color: #4e4e4e;
+    }
+    .moreInfo-container .info-module li {
+        margin: 3px 0px;
+        word-wrap: break-word;
+    }
+
     .aside-comments {
         position: fixed;
         z-index: 1;
@@ -504,6 +575,8 @@
     }
     .aside-comments ul {
         background-color: rgba(255,255,255,0.7);
+        overflow-y: scroll;
+         height: auto;
     }
     .aside-comments li {
         width: 100%;
@@ -513,6 +586,8 @@
         background-color: rgba(255,255,255,0.75);
         text-decoration: none;
         font-size: 14px;
+        white-space: pre;
+        word-wrap:break-word;
         list-style: lower-roman;
     }
     .postComments {
@@ -520,8 +595,10 @@
         z-index: 4;
         right: 0px;
         bottom: 60px;
+        padding-top: 10px;
     }
     .addComment {
+        pointer-events: auto;
         width: 100%;
         background-color: rgba(255,255,255,0.88);
         border: 1px solid #A1A1A1;
@@ -534,6 +611,7 @@
          box-shadow:  inset 1px 1px 4px rgba(0,0,0,0.12);
     }
     .submitComment {
+        pointer-events: auto;
         font-size: 1rem;
         width: 100%;
         border-color: #C62828;
@@ -571,4 +649,83 @@
     .border-left {
         border-left: 1px solid #eee;
     }
+    .aside-active {
+      -webkit-transform: translate3d(0%, 0px, 0px) ;
+      -moz-transform: translate3d(0%, 0px, 0px) ;
+      -ms-transform: translate3d(0%, 0px, 0px) ;
+      -o-transform: translate3d(0%, 0px, 0px) ;
+      transform: translate3d(0%, 0px, 0px) ;
+    }
+
+    @media all and (max-width: 1024px) {
+        .moreInfo-2--3 {
+            width: 100%;
+        }
+        .moreInfo-1--3 {
+            display: none;
+        }
+        .moreInfo-container {
+            margin-top: 0px;
+        }
+    }
+    @media all and (max-width: 960px) {
+        body,html {
+            margin-top: 35px;
+            padding: 0px;
+        }
+        .aside-comments  {
+            -webkit-transform: translate3d(100%, 0px, 0px) !important;
+            -moz-transform: translate3d(100%, 0px, 0px) !important;
+            -ms-transform: translate3d(100%, 0px, 0px) !important;
+            -o-transform: translate3d(100%, 0px, 0px) !important;
+            transform: translate3d(100%, 0px, 0px) !important;
+        }
+        .aside-default {
+            -webkit-transform: translate3d(-100%, 0px, 0px) !important;
+            -moz-transform: translate3d(-100%, 0px, 0px) !important;
+            -ms-transform: translate3d(-100%, 0px, 0px) !important;
+            -o-transform: translate3d(-100%, 0px, 0px) !important;
+            transform: translate3d(-100%, 0px, 0px) !important;
+        }
+        nav ul li:nth-child(n+5),
+        .toggleComments {
+            display: none;
+        }
+
+        h2 {
+            margin: 0px 10px;
+            padding: 10px;
+            font-size: 1.6rem;
+        }
+        div[id^=chartdiv] {
+            margin: 0px 10px 10px!important;
+            padding: 5px !important;
+        }
+    }
+    @media all and (max-width: 500px) {
+        .nav-logo  {
+            width: 50px;
+            display: none;
+        }
+        .border-left {
+            border: none;
+        }
+        .login-container {
+            width: 92%;
+        }
+        .racing-logo {
+          margin-bottom: 5px;
+        }
+        .loginButton {
+          width: 200px;
+      }
+      .moreButton,
+      .logoutButton{
+        font-size: 15px;
+      }
+      .selectInput {
+        margin: 17px 3px;
+      }
+    }
+
   </style>
