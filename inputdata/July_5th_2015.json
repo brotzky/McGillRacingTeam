@@ -1514,9 +1514,9 @@
         "lap_oilp_min": "14.504",
         "lap_fuelp_min": "59.715",
         "lap_battv_mean": "13.38",
-        "CL_F": "37.054",
-        "CL_R": "95.298",
-        "CL": "132.35"
+        "CL_F": "0",
+        "CL_R": "0",
+        "CL": "0"
     },
     {
         "lapTimeOfDay": "55820",
