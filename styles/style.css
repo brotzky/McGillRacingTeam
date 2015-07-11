@@ -30,7 +30,7 @@
     }
     h2 span {
         position: absolute;
-        top: -80px;
+        top: -95px;
     }
     .absolute-center {
       position: absolute;
@@ -64,6 +64,9 @@
     }
     .racing-logo {
       margin-bottom: 25px;
+    }
+    .racing-logo svg {
+        width: 100%;
     }
     .nav-logo svg {
       float: left;
@@ -183,14 +186,14 @@
       color: #4e4e4e;
       display: block;
       background-color: transparent;
-      font-size: 1em;
+      font-size: 17px;
       cursor: pointer;
       -webkit-transition: background-color 300ms ease;
       -moz-transition: background-color 300ms ease;
       -ms-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
       transition: background-color 300ms ease;
-      padding: 18px 17px;
+      padding: 18px 14px;
       border-left: 1px solid #eee;
       margin: 0px 6px;
       font-family: "Roboto","Helvetica Neue", Helvetica, sans-serif;
@@ -349,12 +352,10 @@
         display: inline-block;
         float: right;
         cursor: pointer;
-        padding: 0px 5px;
-        font-size: 1rem;
+        font-size: 17px;
         color: #4e4e4e;
-        padding: 10px 13px;
-       /* border: 1px solid #BEBEBE;*/
-        margin: 6px;
+        padding: 15px 17px;
+        margin: 0px;
     }
     .custom-file-upload::before {
       content: url('../img/upload-arrow.svg');
@@ -378,11 +379,11 @@
         transform: translate3d(0px, -110%, 0px);
     }
     .confirmUpload-active {
-        -webkit-transform: translate3d(0px, 0%, 0px);
-        -moz-transform: translate3d(0px, 0%, 0px);
-        -ms-transform: translate3d(0px, 0%, 0px);
-        -o-transform: translate3d(0px, 0%, 0px);
-        transform: translate3d(0px, 0%, 0px);
+        -webkit-transform: translate3d(0px, 2%, 0px);
+        -moz-transform: translate3d(0px, 2%, 0px);
+        -ms-transform: translate3d(0px, 2%, 0px);
+        -o-transform: translate3d(0px, 2%, 0px);
+        transform: translate3d(0px, 2%, 0px);
     }
     .uploadButton {
       cursor: pointer;
@@ -469,20 +470,21 @@
       color: #4e4e4e;
       display: block;
       background-color: transparent;
-      font-size: 1.1rem;
+      font-size: 17px;
       cursor: pointer;
       -webkit-transition: background-color 300ms ease;
       -moz-transition: background-color 300ms ease;
       -ms-transition: background-color 300ms ease;
       -o-transition: background-color 300ms ease;
       transition: background-color 300ms ease;
-      padding: 18px 8px 18px 20px;
+      padding: 18px 2px 18px 16px;
       border-left: 1px solid #eee;
       margin: 0px 6px;
     }
 
     .moreInfo {
       position: fixed;
+      overflow-y: auto;
       z-index: 3;
       width: 100%;
       height: 100%;
@@ -517,10 +519,38 @@
     }
     .moreInfo-container {
       margin: 25px auto;
-      width: 100%;
-      max-width: 1280px;
-      border: 1px solid #eee;
+      width: 95%;
+      max-width: 1024px;
     }
+    .moreInfo-2--3 {
+        float: left;
+        width: 66%;
+    }
+    .moreInfo-1--3 {
+        float: left;
+        width: 33%;
+    }
+    .moreInfo-container img {
+        float: right;
+        width: 325px;
+    }
+    .moreInfo-container h3 {
+            margin: 20px 0px 8px 0px;
+    }
+    .moreInfo-container ol {
+        margin: 5px 0px;
+    }
+    .moreInfo-container ul {
+        margin: 5px 0px;
+    }
+    .moreInfo-container a {
+        color: #4e4e4e;
+    }
+    .moreInfo-container .info-module li {
+        margin: 3px 0px;
+        word-wrap: break-word;
+    }
+
     .aside-comments {
         position: fixed;
         z-index: 1;
@@ -627,6 +657,17 @@
       transform: translate3d(0%, 0px, 0px) ;
     }
 
+    @media all and (max-width: 1024px) {
+        .moreInfo-2--3 {
+            width: 100%;
+        }
+        .moreInfo-1--3 {
+            display: none;
+        }
+        .moreInfo-container {
+            margin-top: 0px;
+        }
+    }
     @media all and (max-width: 960px) {
         body,html {
             margin-top: 35px;
@@ -646,7 +687,7 @@
             -o-transform: translate3d(-100%, 0px, 0px) !important;
             transform: translate3d(-100%, 0px, 0px) !important;
         }
-        nav ul li:nth-child(n+4),
+        nav ul li:nth-child(n+5),
         .toggleComments {
             display: none;
         }
@@ -669,7 +710,22 @@
         .border-left {
             border: none;
         }
+        .login-container {
+            width: 92%;
+        }
+        .racing-logo {
+          margin-bottom: 5px;
+        }
+        .loginButton {
+          width: 200px;
+      }
+      .moreButton,
+      .logoutButton{
+        font-size: 15px;
+      }
+      .selectInput {
+        margin: 17px 3px;
+      }
     }
 
-    width: 50px;
   </style>
