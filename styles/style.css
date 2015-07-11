@@ -151,7 +151,7 @@
     nav {
       opacity: 0;
       position: fixed;
-      z-index: 2;
+      z-index: 3;
       height: 55px;
       width: 100%;
       top: 0;
@@ -342,13 +342,17 @@
         -webkit-box-shadow: /*your box-shadow*/,0 0 0 50px white inset;
         -webkit-text-fill-color: #434343;
     }
+    .confirm-upload {
+        position: relative;
+    }
     .custom-file-upload {
         display: inline-block;
+        float: right;
         cursor: pointer;
         padding: 0px 5px;
         font-size: 1rem;
         color: #4e4e4e;
-        padding: 10px 0px;
+        padding: 10px 13px;
        /* border: 1px solid #BEBEBE;*/
         margin: 6px;
     }
@@ -359,31 +363,67 @@
       float: left;
       margin: -4px 5px 0px 0px;
     }
+    .confirmUpload {
+        position:   relative;
+        z-index: 0;
+        -webkit-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -moz-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -ms-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -o-transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: transform 400ms cubic-bezier(0.39, 0.575, 0.565, 1);
+        -webkit-transform: translate3d(0px, -110%, 0px);
+        -moz-transform: translate3d(0px, -110%, 0px);
+        -ms-transform: translate3d(0px, -110%, 0px);
+        -o-transform: translate3d(0px, -110%, 0px);
+        transform: translate3d(0px, -110%, 0px);
+    }
+    .confirmUpload-active {
+        -webkit-transform: translate3d(0px, 0%, 0px);
+        -moz-transform: translate3d(0px, 0%, 0px);
+        -ms-transform: translate3d(0px, 0%, 0px);
+        -o-transform: translate3d(0px, 0%, 0px);
+        transform: translate3d(0px, 0%, 0px);
+    }
     .uploadButton {
       cursor: pointer;
       border: none;
-      opacity: 0.4;
       padding: 0px 11px;
-      background-color: transparent;
+      background-color: #fafafa;
       font-size: 1rem;
       color: #4e4e4e;
       border-left: 0px solid rgba(255,255,255,0.1);
       outline: none;
-      padding: 10px 4px;
-      border-radius: 43px;
-      margin: 6px;
+      padding: 16px 18px;
+      margin: 0px;
+      margin-top: 1px;
+      box-shadow: -1px 2px 6px rgba(0,0,0,0.11);
+      position: relative;
+      z-index: 1;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      -webkit-transition: all 300ms ease;
+      -moz-transition: all 300ms ease;
+      -ms-transition: all 300ms ease;
+      -o-transition: all 300ms ease;
+      transition: all 300ms ease;
+    }
+    .uploadButton:hover {
+        background-color: #F7F5F5;
     }
 
     .toBeUploaded {
-      text-align: right;
+      text-align: left;
       border: none;
       height: 48px;
       font-size: 0.8rem;
-      padding: 25px 25px;
+      padding: 25px 19px;
       margin-top: 1px;
-      background-color: transparent;
       color: #4e4e4e;
-
+      float: right;
+      position: fixed;
+      box-shadow: 0px 2px 6px rgba(0,0,0,0.11);
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
     }
     .uploadMessage {
       position: fixed;
@@ -505,6 +545,8 @@
     }
     .aside-comments ul {
         background-color: rgba(255,255,255,0.7);
+        overflow-y: scroll;
+         height: auto;
     }
     .aside-comments li {
         width: 100%;
@@ -514,6 +556,8 @@
         background-color: rgba(255,255,255,0.75);
         text-decoration: none;
         font-size: 14px;
+        white-space: pre;
+        word-wrap:break-word;
         list-style: lower-roman;
     }
     .postComments {
@@ -521,6 +565,7 @@
         z-index: 4;
         right: 0px;
         bottom: 60px;
+        padding-top: 10px;
     }
     .addComment {
         pointer-events: auto;
@@ -617,8 +662,14 @@
         }
     }
     @media all and (max-width: 500px) {
-        .nav-logo {
+        .nav-logo  {
+            width: 50px;
             display: none;
         }
+        .border-left {
+            border: none;
+        }
     }
+
+    width: 50px;
   </style>

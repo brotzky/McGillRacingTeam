@@ -54,10 +54,14 @@
                         Upload Data
                     </label>
                     <input type="file" name="fileToUpload" id="fileToUpload" placeholder="Upload Data">
-                    <input type="submit" value="Confirm" class="uploadButton" name="submit" disabled>
+
+                    <div class="confirmUpload">
+                    <input type="submit" value="Confirm" class="uploadButton" name="submit" >
+                     <input type="text" class="toBeUploaded" readonly="readonly" />
+                     </div>
                 </form>
               </li>
-              <input type="text" class="toBeUploaded" readonly="readonly" />
+
             </ul>
           </nav>
         </header>
@@ -68,8 +72,8 @@
         <aside class="aside-comments">
 
           <form method="POST" class="postComments">
-              <textarea name="addComment"  class="addComment"></textarea>
-              <input type="submit" name="submit" class="submitComment" value="Add Notes">
+              <textarea name="addComment"  class="addComment" ></textarea>
+              <input type="submit" name="submit" class="submitComment" value="Add Note">
           </form>
 
           <ul id="commentList">
@@ -120,7 +124,7 @@
                 var url = "/mrt/csvUploader.php"; // the script where you handle the form input.
                 var data = new FormData(this);
                 var fileName = $("#fileToUpload").val().split('\\').pop().split('.').shift();
-
+                $('.confirmUpload').removeClass('confirmUpload-active');
                     $.ajax({
                            type: "POST",
                            url: url,
@@ -152,7 +156,7 @@
           $('#fileToUpload').change(function(){
 
               $('.toBeUploaded').val($(this).val().split('\\').pop());
-              $('.uploadButton').removeAttr('disabled').css('opacity','1');
+              $('.confirmUpload').addClass('confirmUpload-active');
 
                if($('.toBeUploaded').val().length > 30) {
 
@@ -669,18 +673,17 @@
                var noSlashSelectedValue = selectedValue.substr(selectedValue.lastIndexOf('/') + 1);
                var splitValue = noSlashSelectedValue.split('.');
                var theDate = splitValue.shift();
-              var theComment = $('.addComment').val();
 
+              var theComment =  $('.addComment').val();
 
               $('.addComment').val('');
 
-
-              console.log(theComment);
                var unorderedList = $('#commentList');
               if(unorderedList.children().length > 1) {
                     unorderedList.children().remove();
               }
               // Submitting POST to Firebase databse.
+
               var postsRef = myDataRef.child(theDate);
                 postsRef.push({
                   comment: theComment,
