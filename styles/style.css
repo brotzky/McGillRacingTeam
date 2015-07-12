@@ -430,8 +430,8 @@
       position: fixed;
       text-align: center;
       z-index: 2;
-      bottom: 30px;
-      right: 30px;
+      top:  60px;
+      right: 8px;
       background-color: #fff;
       color: #4e4e4e;
       border: 1px solid #eee;

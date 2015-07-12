@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="/mrt/styles/style.css" type="text/css">
         <style type="text/css">
         html, body {
-            background-color: #f1f1f1;
+            background-color: #e9eaec;
         }
         </style>
         <link href='http://fonts.googleapis.com/css?family=Roboto:400' rel='stylesheet' type='text/css'>
@@ -98,7 +98,7 @@
                     <h3>Instructions</h3>
                     <ol>
                         <li>Click <strong>Upload Data</strong> and select a file from your computer.</li>
-                        <li><strong>Confirm</strong> you selected the correct file from fly-in button.</li>
+                        <li><strong>Confirm</strong> you selected the correct file from the fly-in button.</li>
                         <li><strong>Select</strong> the new upload from the dropdown menu to load the graphs.</li>
                     </ol>
                 </div>
@@ -505,7 +505,26 @@
                 "#673AB7",
                 "#D32F2F",
                 "#880E4F",
-                "#283593"
+                "#283593",
+                "#ed5153",
+                "#323a45",
+                "#3F51B5",
+                "#009688",
+                "#BF360C",
+                "#4CAF50",
+                "#FF9800",
+                "#FF5722",
+                "#607D8B",
+                "#673AB7",
+                "#D32F2F",
+                "#880E4F",
+                "#283593",
+                "#004D40",
+                "#01579B",
+                "#4CAF50",
+                "#FBC02D",
+                "#424242",
+                "#3F51B5"
             ]
 
             // If Container, remove it so we can build a new one.
@@ -793,6 +812,15 @@
                  if (e.keyCode == 27) {
                     asideComments.removeClass('aside-active');
                     $('.moreInfo').removeClass('showMoreInfo');
+
+                       var moreButton = document.querySelector('.moreButton');
+                        if($('.moreButton').text() === "More") {
+                           moreButton.innerHTML = "Less";
+                           moreButton.style.paddingLeft = "19px";
+                        } else {
+                            moreButton.innerHTML = "More";
+                            moreButton.style.paddingLeft = "16px";
+                        }
                 }
             });
 
