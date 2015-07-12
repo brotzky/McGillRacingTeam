@@ -379,11 +379,11 @@
         transform: translate3d(0px, -110%, 0px);
     }
     .confirmUpload-active {
-        -webkit-transform: translate3d(0px, 2%, 0px);
-        -moz-transform: translate3d(0px, 2%, 0px);
-        -ms-transform: translate3d(0px, 2%, 0px);
-        -o-transform: translate3d(0px, 2%, 0px);
-        transform: translate3d(0px, 2%, 0px);
+        -webkit-transform: translate3d(0px, 3%, 0px);
+        -moz-transform: translate3d(0px, 3%, 0px);
+        -ms-transform: translate3d(0px, 3%, 0px);
+        -o-transform: translate3d(0px, 3%, 0px);
+        transform: translate3d(0px, 3%, 0px);
     }
     .uploadButton {
       cursor: pointer;
@@ -432,9 +432,8 @@
       z-index: 2;
       top:  60px;
       right: 8px;
-      background-color: #fff;
-      color: #4e4e4e;
-      border: 1px solid #eee;
+      color: #fff;
+      background-color: #D32F2F;
       height: 50px;
       width: auto;
       padding: 0px 20px;

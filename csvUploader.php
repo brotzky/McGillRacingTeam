@@ -26,8 +26,8 @@ if($imageFileType != "json" ) {
     return;
 }
 
-if((strlen($imageFileType) > 15) ) {
-  echo "Sorry, filename must be less than 20 characters";
+if((strlen($imageFileType) > 25) ) {
+  echo "Sorry, filename must be less than 25 characters";
   $uploadOk = 0;
   break;
 }
@@ -39,7 +39,7 @@ if ($uploadOk == 0) {
 // if everything is ok, try to upload file
 } else {
     if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-        echo "The file ". basename( $_FILES["fileToUpload"]["name"]). " has been uploaded succesfully.";
+        echo basename( $_FILES["fileToUpload"]["name"]) . " has been uploaded succesfully.";
     } else {
         echo "Sorry, there was an error uploading your file.";
     }

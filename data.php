@@ -164,6 +164,7 @@
                 var data = new FormData(this);
                 var fileName = $("#fileToUpload").val().split('\\').pop().split('.').shift();
                 $('.confirmUpload').removeClass('confirmUpload-active');
+                $('.uploadMessage').css("background-color","#D32F2F");
                     $.ajax({
                            type: "POST",
                            url: url,
@@ -174,12 +175,16 @@
                            {
 
                               $('.uploadMessage > p').text(data);
+                              console.log(data);
+
+
                               $('.uploadMessage').addClass('uploadMessage-active').delay(4800).queue(function(next){
                                     $(this).removeClass("uploadMessage-active");
                                     next();
                                 });
 
                               if (data.indexOf("succesfully") > -1) {
+                                 $('.uploadMessage').css("background-color","#388E3C");
                                   var optionElement = document.createElement('option');
                                   fileNameReplaced = fileName.replace(/_/g, " ");
                                   optionElement.innerHTML = fileNameReplaced;
@@ -194,19 +199,20 @@
 
           $('#fileToUpload').change(function(){
 
-              $('.toBeUploaded').val($(this).val().split('\\').pop());
-              $('.confirmUpload').addClass('confirmUpload-active');
 
-               if($('.toBeUploaded').val().length > 30) {
+    console.log($('.toBeUploaded').val($(this).val().split('\\').pop()));
+                 if($('.toBeUploaded').val().length > 30) {
 
-                       $('.uploadButton').disabled = false;
-                        $('.uploadMessage > p').text('Sorry, file must be less than 30 characeters');
-                        $('.uploadButton').attr('disabled','disabled').css('opacity','0.4');
+                        $('.uploadMessage > p').text('Sorry, file name must be less than 30 characeters');
 
                         $('.uploadMessage').addClass('uploadMessage-active').delay(5000).queue(function(next){
-                        $(this).removeClass("uploadMessage-active");
-                        next();
-                    });
+                            $(this).removeClass("uploadMessage-active");
+                            next();
+                        });
+                  } else {
+                    console.log('test');
+                    $('.toBeUploaded').val($(this).val().split('\\').pop());
+                    $('.confirmUpload').addClass('confirmUpload-active');
                   }
 
             });
