@@ -151,6 +151,16 @@
       -o-transition: fill 300ms ease;
       transition: fill 300ms ease;
     }
+    div[id^=chartdiv] {
+        height: 450px;
+        border-radius: 0px 0px 2px 2px;
+        margin: 0px 43px 43px;
+        padding: 15px 5px;
+        box-shadow: rgba(0, 0, 0, 0.105882) 0px 1px 3px;
+        overflow: hidden;
+        text-align: left;
+        background-color: rgb(255, 255, 255);
+    }
     nav {
       opacity: 0;
       position: fixed;

@@ -16,11 +16,9 @@
   </form>
   <div class="loginError">Invalid Username or Password</div>
 </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-
-  <script src='//cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-  <script src="//cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
+    <script src='//cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
+    <script src="//cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
 
 
 <script type="text/javascript">
