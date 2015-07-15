@@ -1,64 +1,56 @@
 
     $(document).ready(function(){
 
+            // storing init of firebase in myDataRef variable
             var myDataRef = new Firebase('//torrid-fire-7257.firebaseio.com');
 
-            if(window.location.href.indexOf("data") === -1) {
-
-              if(document.forms.login.email.value === "") {
-                document.forms.login.email.focus();
-              }
-              $('.login-container').addClass('login-container-active');
-
-              $('#login-form').keyup(function(event){
-                event.preventDefault()
-                var userEmail = $('.userName').val().toString();
-                var userPass = $('.userPass').val().toString();
-
-                myDataRef.authWithPassword({
-                  email    : userEmail,
-                  password : userPass,
-                }, function(error, authData) {
-                  if (error) {
-
-                  } else {
-                    $('.login-container').fadeOut('fast');
-                    setTimeout(function(){
-                      window.location = "mrt/data";
-                    }, 400);
-
-                  }
-                });
-              });
-              $('#login-form').on('submit',function(event){
-                event.preventDefault()
-                var userEmail = $('.userName').val().toString();
-                var userPass = $('.userPass').val().toString();
-
-                myDataRef.authWithPassword({
-                  email    : userEmail,
-                  password : userPass,
-                  async: true
-                }, function(error, authData) {
-                  if (error) {
-                    $("input[class*='user']").addClass('invalidLogin');
-                    $('.loginError').fadeIn();
-                  } else {
-                    $('.login-container').removeClass('login-container-active');
-                    $('.login-container').fadeOut('slow');
-                    setTimeout(function(){
-                      window.location = "mrt/data";
-                    },444);
-                  }
-                });
-              });
-            } else {
-
-
-             $('nav').addClass('onload-reveal');
              var uploadMessage = $('.uploadMessage');
              var toBeUploaded = $('.toBeUploaded');
              var asideComments = $(".aside-comments");
+
+             (function initPage() {
+                document.getElementById('topNav').className += 'onload-reveal';
+                 var selectedValue = $('.selectInput > option:first-child').val();
+                 $(".hideLoading").show();
+                     $.getJSON( selectedValue, function( data ) {
+                         useData(data);
+                         buildComments();
+                         showAndHide();
+                     });
+             })();
+
+             // Change Data file on user selection
+             $(".selectInput").change(function (){
+                   var acContainer = $('#amchartContainer');
+
+                   $(".hideLoading").show();
+                   $('aside').removeClass('aside-active');
+
+                   if(acContainer.children().length > 1) {
+                       acContainer.fadeOut(300);
+
+                       setTimeout(function(){
+                           acContainer.remove();
+                           $('#sideList').children().remove();
+                       },300);
+                   }
+
+                   removeAmchartLists();
+
+                   // Added in setTimout to give aside time to transform: translateX(0%)
+                   setTimeout(function(){
+                       $.getJSON( getSelectedValue(), function( data ) {
+                           useData(data);
+                           showAndHide();
+                           buildComments();
+                       });
+                   }, 525);
+               });
+
+             function showAndHide() {
+                $('.aside-default').addClass('aside-active');
+                $(".hideLoading").fadeOut(333);
+             }
 
           // Seconds to HH:MM:SS
           // Attaching to prototype --> important note
@@ -368,7 +360,6 @@
                     "#3F51B5"
                 ]
 
-
                 // If Container, remove it so we can build a new one.
 
                 var sideList = document.getElementById('sideList');
@@ -381,6 +372,7 @@
                   }
 
                   charts = [];
+
                   for (i = 0; i < keyHolderArr[0].length-1; i++) {
 
                     var amChartContainer = document.createElement('div');
@@ -412,60 +404,61 @@
                     header.appendChild(spanOff);
                     //loadingMessage
 
-                       var divID = temp.id.toString();
+                   var divID = temp.id.toString();
 
 
-                      chartConfig[i] = {
-                          "type": "serial",
-                          "theme": "dark",
-                          "dataDateFormat": "HH:NN:SS",
-                          "marginRight": 50,
-                          "autoMarginOffset": 50,
-                          "dataProvider": makers[i],
-                          "responsive": {
-                              "enabled": true
-                            },
-                          "balloon": {
-                            "cornerRadius": 0
-                          },
-                          "valueAxes": [{
-                            "axisAlpha": 0
-                          }],
-                          "graphs": [{
-                            "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
-                            "bullet": "round",
-                            "bulletSize": 6,
-                            "connect": false,
-                            "gapPeriod": 200,
-                            "lineColor": prettyColors[i],
-                            "lineThickness": 1,
-                            "negativeLineColor": "#487dac",
+                  chartConfig[i] = {
+                      "type": "serial",
+                      "theme": "dark",
+                      "dataDateFormat": "HH:NN:SS",
+                      "marginRight": 50,
+                      "autoMarginOffset": 50,
+                      "dataProvider": makers[i],
+                      "responsive": {
+                          "enabled": true
+                        },
+                      "balloon": {
+                        "cornerRadius": 0
+                      },
+                      "valueAxes": [{
+                        "axisAlpha": 0
+                      }],
+                      "graphs": [{
+                        "balloonText": "[[lapTimeOfDay]]<br><b><span style='font-size:14px;'>[[value]]</span></b>",
+                        "bullet": "round",
+                        "bulletSize": 6,
+                        "connect": false,
+                        "gapPeriod": 200,
+                        "lineColor": prettyColors[i],
+                        "lineThickness": 1,
+                        "negativeLineColor": "#487dac",
 
-                            "valueField": keyHolderArr[0][i+1].toString()
-                          }],
-                          "chartCursor": {
-                            "categoryBalloonDateFormat":  "HH:NN:SS",
-                            "cursorAlpha": 0.1,
-                            "cursorColor": prettyColors[i],
-                            "fullWidth": true,
-                            "graphBulletSize": 2
-                          },
-                          "chartScrollbar": {},
-                          "categoryField": "lapTimeOfDay",
-                          "categoryAxis": {
-                            "minPeriod": "ss",
-                            "parseDates": true,
-                            "minorGridEnabled": true
-                          },
-                          "export": {
-                            "enabled": true
-                          }
-                        };
-                        // Adding all the made charts to an Array
-                        // This is to sync al the zooming of the graphs.
-                         charts.push(AmCharts.makeChart(divID, chartConfig[i]));
+                        "valueField": keyHolderArr[0][i+1].toString()
+                      }],
+                      "chartCursor": {
+                        "categoryBalloonDateFormat":  "HH:NN:SS",
+                        "cursorAlpha": 0.1,
+                        "cursorColor": prettyColors[i],
+                        "fullWidth": true,
+                        "graphBulletSize": 2
+                      },
+                      "chartScrollbar": {},
+                      "categoryField": "lapTimeOfDay",
+                      "categoryAxis": {
+                        "minPeriod": "ss",
+                        "parseDates": true,
+                        "minorGridEnabled": true
+                      },
+                      "export": {
+                        "enabled": true
+                      }
+                    };
+                    // Adding all the made charts to an Array
+                    // This is to sync al the zooming of the graphs.
+                     charts.push(AmCharts.makeChart(divID, chartConfig[i]));
                 }
 
+                // Adding Zoom All functionality to charts
                 for (var x in charts) {
                     charts[x].addListener("zoomed", syncZoom);
                     charts[x].addListener("init", addCursorListeners);
@@ -509,15 +502,9 @@
                     }
                 }
               }
+              // End Add zoom functionality to charts
 
-
-          // Default view of Data selection
-          var selectedValue = $('.selectInput > option:first-child').val();
-          var popValue = selectedValue.substr(selectedValue.lastIndexOf('/') + 1).split('.').shift();
-
-          buildComments(popValue);
-
-
+             // Default view of Data selection
             var moreButton = document.querySelector('.moreButton');
             moreButton.addEventListener( 'click', moreInfoToggler, false );
 
@@ -532,20 +519,12 @@
                     }
             }
 
-          $(".hideLoading").show();
-          $.getJSON( selectedValue, function( data ) {
-               useData(data);
-               $('.aside-default').addClass('aside-active');
-               $(".hideLoading").fadeOut(333);
-            });
-
-          function buildComments(queryDate){
-                var queryFireBase = new Firebase("https://torrid-fire-7257.firebaseio.com/" + queryDate);
+            function buildComments() {
+                var queryFireBase = new Firebase("//torrid-fire-7257.firebaseio.com/" + getTheSelectedDate());
 
                 queryFireBase.on("value", function(snapshot) {
                     snapshotObj = snapshot.val();
                     var toBeFilled = buildVariables(snapshotObj);
-
                     var createListItems = [];
                     for (var i = 0; i < toBeFilled.length; i++) {
                         createListItems[i] = document.createElement('li');
@@ -563,77 +542,37 @@
                 });
             }
 
-
-
-          $('.postComments').submit(function(event) {
-              event.preventDefault();
-
-               var selectedValue = $(".selectInput").val();
-               var noSlashSelectedValue = selectedValue.substr(selectedValue.lastIndexOf('/') + 1);
-               var splitValue = noSlashSelectedValue.split('.');
-               var theDate = splitValue.shift();
-
-              var theComment =  $('.addComment').val();
-
-              $('.addComment').val('');
-
-               var unorderedList = doucment.getElementById('commentList');
-              if(unorderedList.children().length > 1) {
-                    unorderedList.children().remove();
-              }
-              // Submitting POST to Firebase databse.
-
-              var postsRef = myDataRef.child(theDate);
-                postsRef.push({
-                  comment: theComment,
-                });
-
-            });
-
-          // Change Data file on user selection
-          $(".selectInput").change(function (){
-
-            var selectedValue = $(this).val();
-            $(".hideLoading").show();
-            $('aside').removeClass('aside-active');
-
-            if($('#amchartContainer').children().length > 1) {
-                $('#amchartContainer').fadeOut(300);
-                setTimeout(function(){
-                  $('#amchartContainer').remove();
-                  $('#sideList').children().remove();
-                },300);
-
-            }
-
-
-
             function removeAmchartLists() {
                 var unorderedList = $('#commentList');
                 if(unorderedList.children().length > 1) {
                     $('#amchartContainer').fadeOut(300);
-                      unorderedList.children().remove();
+                    unorderedList.children().remove();
                 }
             }
 
+            function getSelectedValue() {
+                return  $(".selectInput").val();
+            }
 
+            function getTheSelectedDate() {
+                return getSelectedValue().substr(getSelectedValue().lastIndexOf('/') + 1).split('.').shift();
+            }
 
+          $('.postComments').submit(function(event) {
+              event.preventDefault();
 
+              var theComment =  $('.addComment').val();
+               var unorderedList = $('#commentList');
 
-            // Added in setTimout to give aside time to transform: translateX(0%)
-            setTimeout(function(){
-                buildComments(popValue);
-              $.getJSON( selectedValue, function( data ) {
-                 useData(data);
-                 $('.aside-default').addClass('aside-active');
-                 $(".hideLoading").fadeOut(333);
-
-              });
-             }, 505);
-
-          });
-
-
+              if(unorderedList.children().length > 1) {
+                    unorderedList.children().remove();
+              }
+              // Submitting POST to Firebase databse.
+              var postsRef = myDataRef.child(getTheSelectedDate());
+                postsRef.push({
+                  comment: theComment,
+                });
+            });
 
             $('.toggleComments').click(function(){
               asideComments.toggleClass('aside-active');
@@ -660,6 +599,7 @@
             // Logout button
             var logoutButton = document.querySelector('.logoutButton');
             logoutButton.addEventListener( 'click', doLogOut, false );
+
             function doLogOut() {
                  myDataRef.unauth();
                  var authData = myDataRef.getAuth();
@@ -682,42 +622,44 @@
               });
 
             // Submittion of upload data
-              $('.uploadForm').submit(function( event ) {
+              $('.uploadForm').submit(function(event) {
                   event.preventDefault();
-                  var url = "/mrt/csvUploader.php"; // the script where you handle the form input.
+
+                  var url = "/mrt/csvUploader.php"; // the script where we handle the form input.
                   var data = new FormData(this);
                   var fileName = $("#fileToUpload").val().split('\\').pop().split('.').shift();
 
                   $('.confirmUpload').removeClass('confirmUpload-active');
                   uploadMessage.css("background-color","#D32F2F");
-                      $.ajax({
-                             type: "POST",
-                             url: url,
-                             data: data,
-                             processData: false,
-                             contentType: false,
-                             success: function(data)
-                             {
-                                $('.uploadMessage > p').text(data);
-                                uploadMessage.addClass('uploadMessage-active').delay(4800).queue(function(next){
-                                      $(this).removeClass("uploadMessage-active");
-                                      next();
-                                  });
 
-                                if (data.indexOf("succesfully") > -1) {
-                                   $('.uploadMessage').css("background-color","#388E3C");
-                                    var optionElement = document.createElement('option');
-                                    fileNameReplaced = fileName.replace(/_/g, " ");
-                                    optionElement.innerHTML = fileNameReplaced;
-                                    optionElement.value = '/mrt/inputdata/' + fileName + '.json';
-                                    $('.selectInput').prepend(optionElement);
-                                }
-                             }
-                           });
+                  $.ajax({
+                         type: "POST",
+                         url: url,
+                         data: data,
+                         processData: false,
+                         contentType: false,
+                         success: function(data)
+                         {
+                            $('.uploadMessage > p').text(data);
+                            uploadMessage.addClass('uploadMessage-active').delay(4800).queue(function(next){
+                                  $(this).removeClass("uploadMessage-active");
+                                  next();
+                              });
 
-                      return false; // avoid to execute the actual submit of the form.
+                            if (data.indexOf("succesfully") > -1) {
+                               $('.uploadMessage').css("background-color","#388E3C");
+                                var optionElement = document.createElement('option');
+                                fileNameReplaced = fileName.replace(/_/g, " ");
+                                optionElement.innerHTML = fileNameReplaced;
+                                optionElement.value = '/mrt/inputdata/' + fileName + '.json';
+                                $('.selectInput').prepend(optionElement);
+                            }
+                         }
+                       });
+
+                  return false; // avoid to execute the actual submit of the form.
             });
-    }
+
 });
 
 

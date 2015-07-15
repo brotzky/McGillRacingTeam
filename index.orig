@@ -19,6 +19,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src='//cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
     <script src="//cdn.firebase.com/js/simple-login/1.6.4/firebase-simple-login.js"></script>
-    <script src="/mrt/js/build/app.min.js"></script>
+    <script >
+        var myDataRef=new Firebase("//torrid-fire-7257.firebaseio.com");""===document.forms.login.email.value&&document.forms.login.email.focus(),$(".login-container").addClass("login-container-active"),$("#login-form").on("submit",function(a){a.preventDefault();var n=$(".userName").val().toString(),o=$(".userPass").val().toString();myDataRef.authWithPassword({email:n,password:o,async:!0},function(a){a?($("input[class*='user']").addClass("invalidLogin"),$(".loginError").fadeIn()):($(".login-container").removeClass("login-container-active"),$(".login-container").fadeOut("slow"),setTimeout(function(){window.location="mrt/data"},444))})});
+    </script>
 </body>
 </html>
