@@ -8,15 +8,33 @@
              var toBeUploaded = $('.toBeUploaded');
              var asideComments = $(".aside-comments");
 
+
+
              (function initPage() {
                 document.getElementById('topNav').className += 'onload-reveal';
                  var selectedValue = $('.selectInput > option:first-child').val();
                  $(".hideLoading").show();
+
+                  if(selectedValue.indexOf('csv') === -1) {
                      $.getJSON( selectedValue, function( data ) {
+                        console.log('data! ' + data);
                          useData(data);
                          buildComments();
                          showAndHide();
                      });
+                 } else {
+                    Papa.parse(selectedValue, {
+                       download: true,
+                        header: true,
+                        skipEmptyLines: true,
+                        complete: function(results) {
+                            console.log(results.data);
+                            useData(results.data);
+                             buildComments();
+                             showAndHide();
+                        }
+                    });
+                }
              })();
 
              // Change Data file on user selection
@@ -36,14 +54,29 @@
                    }
 
                    removeAmchartLists();
-
+                   var pickedValue = getSelectedValue();
                    // Added in setTimout to give aside time to transform: translateX(0%)
                    setTimeout(function(){
-                       $.getJSON( getSelectedValue(), function( data ) {
-                           useData(data);
-                           showAndHide();
-                           buildComments();
-                       });
+                        if(pickedValue.indexOf('csv') === -1) {
+                             $.getJSON( pickedValue, function( data ) {
+                                console.log('data! ' + data);
+                                 useData(data);
+                                 buildComments();
+                                 showAndHide();
+                             });
+                         } else {
+                            Papa.parse(pickedValue, {
+                               download: true,
+                                header: true,
+                                skipEmptyLines: true,
+                                complete: function(results) {
+                                    console.log(results.data);
+                                    useData(results.data);
+                                     buildComments();
+                                     showAndHide();
+                                }
+                            });
+                        }
                    }, 525);
                });
 
