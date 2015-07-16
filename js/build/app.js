@@ -17,7 +17,6 @@
 
                   if(selectedValue.indexOf('csv') === -1) {
                      $.getJSON( selectedValue, function( data ) {
-                        console.log('data! ' + data);
                          useData(data);
                          buildComments();
                          showAndHide();
@@ -59,7 +58,6 @@
                    setTimeout(function(){
                         if(pickedValue.indexOf('csv') === -1) {
                              $.getJSON( pickedValue, function( data ) {
-                                console.log('data! ' + data);
                                  useData(data);
                                  buildComments();
                                  showAndHide();
@@ -660,7 +658,9 @@
 
                   var url = "/mrt/csvUploader.php"; // the script where we handle the form input.
                   var data = new FormData(this);
-                  var fileName = $("#fileToUpload").val().split('\\').pop().split('.').shift();
+                   var originalFile = $("#fileToUpload").val();
+                   (originalFile.indexOf('json') === -1) ? fileExt = ".csv" : fileExt = ".json";
+                  var fileName = originalFile.split('\\').pop().split('.').shift();
 
                   $('.confirmUpload').removeClass('confirmUpload-active');
                   uploadMessage.css("background-color","#D32F2F");
@@ -684,7 +684,7 @@
                                 var optionElement = document.createElement('option');
                                 fileNameReplaced = fileName.replace(/_/g, " ");
                                 optionElement.innerHTML = fileNameReplaced;
-                                optionElement.value = '/mrt/inputdata/' + fileName + '.json';
+                                optionElement.value = '/mrt/inputdata/' + fileName + fileExt;
                                 $('.selectInput').prepend(optionElement);
                             }
                          }

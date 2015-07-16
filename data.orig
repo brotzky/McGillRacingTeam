@@ -44,7 +44,6 @@
                     });
                     foreach($files as $file){
                       $filename = substr($file, strrpos($file, '/') + 1);
-                      echo $filename;
                       if (strpos($filename,'json') !== false) {
                             $filenameNoExt = basename($filename, ".json");
                       } else {
