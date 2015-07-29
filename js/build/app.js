@@ -8,8 +8,6 @@
              var toBeUploaded = $('.toBeUploaded');
              var asideComments = $(".aside-comments");
 
-
-
              (function initPage() {
                 document.getElementById('topNav').className += 'onload-reveal';
                  var selectedValue = $('.selectInput > option:first-child').val();
