@@ -82,7 +82,7 @@
       padding: 3px 5px;
       margin: 12px 0px 0px;
       border: none;
-      border-bottom: 1px solid#4e4e4e;
+      border-bottom: 1px solid #4e4e4e !important;
       font-size: 1rem;
     }
     .userName:focus .userName::-webkit-input-placeholder {
