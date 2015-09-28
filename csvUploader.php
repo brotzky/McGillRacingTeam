@@ -23,7 +23,7 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
 if($imageFileType == "csv" || $imageFileType == "json") {
     $uploadOk = 1;
 } else  {
-    echo "Sorry, only JSON or CSV fromatted Data";
+    echo "Sorry, only JSON or CSV formatted Data";
     $uploadOk = 0;
     return;
 }
