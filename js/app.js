@@ -7,9 +7,9 @@ $(document).ready(function(){
      var asideComments = $(".aside-comments");
 
      (function initPage() {
-        document.getElementById('topNav').className += 'onload-reveal';
-         var selectedValue = $('.selectInput > option:first-child').val();
-         $(".hideLoading").show();
+         var selectedValue = document.querySelector('.selectInput > option:first-child').value;
+         document.getElementById('topNav').className += 'onload-reveal';
+         document.querySelector(".hideLoading").style.display = 'block';
 
           if(selectedValue.indexOf('csv') === -1) {
              $.getJSON( selectedValue, function( data ) {
@@ -35,8 +35,7 @@ $(document).ready(function(){
      // Change Data file on user selection
      $(".selectInput").change(function (){
            var acContainer = $('#amchartContainer');
-
-           $(".hideLoading").show();
+           document.querySelector(".hideLoading").style.display = 'block';
            $('aside').removeClass('aside-active');
 
            if(acContainer.children().length > 1) {
@@ -75,7 +74,14 @@ $(document).ready(function(){
        });
 
      function showAndHide() {
-        $('.aside-default').addClass('aside-active');
+        var asideDefault = document.querySelector('.aside-default');
+        // Add class
+        if (asideDefault.classList) {
+            asideDefault.classList.add("aside-active");
+        } else {
+            asideDefault.className += ' ' + "aside-active";
+        }
+
         $(".hideLoading").fadeOut(333);
      }
 
@@ -134,7 +140,7 @@ $(document).ready(function(){
       // Build all the objects to give to amcharts
       for (var i = 0; i < holderArr.length; i += numProperties) {
 
-        
+
         for(var j = 1; j < keyHolderArr.length*2 - 1; j++ ) {
 
           var tmp = {};
@@ -154,7 +160,7 @@ $(document).ready(function(){
     }
 
     // Coloring the arrays with custom colors
-    // Formatted for easy editing. Leave stacked vertically. 
+    // Formatted for easy editing. Leave stacked vertically.
     var prettyColors = [
       "#ed5153",
       "#323a45",
@@ -352,13 +358,13 @@ $(document).ready(function(){
     moreButton.addEventListener( 'click', moreInfoToggler, false );
 
     function moreInfoToggler() {
-      $('.moreInfo').toggleClass('showMoreInfo');
-       if($(this).text() === "More") {
-        moreButton.innerHTML = "Less";
-        moreButton.style.paddingLeft = "19px";
-       } else {
-         moreButton.innerHTML = "More";
-         moreButton.style.paddingLeft = "16px";
+        $('.moreInfo').toggleClass('showMoreInfo');
+        if($(this).text() === "More") {
+            moreButton.innerHTML = "Less";
+            moreButton.style.paddingLeft = "19px";
+        } else {
+            moreButton.innerHTML = "More";
+            moreButton.style.paddingLeft = "16px";
        }
     }
 
@@ -379,7 +385,6 @@ $(document).ready(function(){
                 createListItems[i] = '<li>' + toBeFilled[i] + '</li>';
                 unorderedList.append(createListItems[i]);
             }
-
         }, function (errorObject) {
             console.log("The read failed: " + errorObject.code);
         });
@@ -394,7 +399,7 @@ $(document).ready(function(){
     }
 
     function getSelectedValue() {
-        return  $(".selectInput").val();
+        return  document.querySelector(".selectInput").value;
     }
 
     function getTheSelectedDate() {
@@ -404,11 +409,11 @@ $(document).ready(function(){
   $('.postComments').submit(function(event) {
       event.preventDefault();
 
-      var theComment =  $('.addComment').val();
-       var unorderedList = $('#commentList');
+      var theComment =  document.querySelector('.addComment').value;
+       var unorderedList = document.getElementById('commentList');
 
-      if(unorderedList.children().length > 1) {
-            unorderedList.children().remove();
+      if(unorderedList.children.length > 1) {
+            unorderedList.children.remove();
       }
       // Submitting POST to Firebase databse.
       var postsRef = myDataRef.child(getTheSelectedDate());
