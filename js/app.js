@@ -59,15 +59,14 @@ $(document).ready(function(){
                      });
                  } else {
                     Papa.parse(pickedValue, {
-                       download: true,
-                        header: true,
-                        skipEmptyLines: true,
-                        complete: function(results) {
-                            console.log(results.data);
-                            useData(results.data);
-                             buildComments();
-                             showAndHide();
-                        }
+                           download: true,
+                            header: true,
+                            skipEmptyLines: true,
+                            complete: function(results) {
+                                useData(results.data);
+                                buildComments();
+                                showAndHide();
+                            }
                     });
                 }
            }, 525);
@@ -139,7 +138,6 @@ $(document).ready(function(){
 
       // Build all the objects to give to amcharts
       for (var i = 0; i < holderArr.length; i += numProperties) {
-
 
         for(var j = 1; j < keyHolderArr.length*2 - 1; j++ ) {
 
@@ -232,13 +230,13 @@ $(document).ready(function(){
       var spanOff = document.createElement('span');
 
       // If not amChartContainer, make one to insert graphs into
-      if(!($('#amchartContainer').length)) {
+      if(!(document.getElementById('amchartContainer').length)) {
           amChartContainer.id = 'amchartContainer';
           document.getElementsByTagName('body')[0].appendChild(amChartContainer);
       }
 
       spanOff.id = keyHolderArr[0][i+1];
-      amChartContainer =  document.getElementById('amchartContainer');
+      var amChartContainer =  document.getElementById('amchartContainer');
 
       header.innerHTML = keyHolderArr[0][i+1];
       temp = document.createElement('div');
