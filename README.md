@@ -11,3 +11,5 @@ password: guestdemo
 ## Project Notes
 This project has evolved from an initial straight forward page to a fully functional web application. It is used as a central hub for the entire team to share and look at their data. 
 
+### Project Screenshot
+![Mcgill Racing App Screenshot](/img/mcgill-racing-screenshot.jpg?raw=true "Mcgill Racing Team Data App")
