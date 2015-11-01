@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>McGill FSAE Racing</title>
-  <link rel="stylesheet" type="text/css" href="styles/style.min.css">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
 <?php $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";?>
@@ -13,7 +13,7 @@
         $demoEmail = "guest.credentials@demo.com";
         $demoPass = "InputTypeEqualsTextTrick";
     ?>
-    <div class="demo-container">
+    <div class="demo-container absolute-center">
         <p>Thanks for checking out the McGill Racing Team data application.</p>
         <p>You've been granted guest credentials.</p>
         <p><a href="http://dennisbrotzky.me">Return to portfolio</a></p>
